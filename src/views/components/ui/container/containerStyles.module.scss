@@ -1,0 +1,9 @@
+@import "src/views/styles/_globals.scss";
+
+.container {
+    // border: 5px solid $primary-color;
+    max-width: 800px;
+    margin: 20px auto;
+    height: 50vh;
+    padding: 0 20px;
+}

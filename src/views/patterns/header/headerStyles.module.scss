@@ -1,0 +1,19 @@
+@import "src/views/styles/_globals.scss";
+
+.container{
+    width: 100vw;
+    padding: 8px 12px;
+    background-color: $primary-color;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user_icon_wrapper{
+    width:30px;
+    height: 30px;
+    position: relative;
+}
+.actions_wrapper{
+    display:flex;
+}
