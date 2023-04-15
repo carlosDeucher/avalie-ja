@@ -1,0 +1,13 @@
+@import "src/views/styles/globals.scss";
+
+.input {
+    outline: none;
+    font-size: $font-size-medium;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    transition: box-shadow 150ms;
+    &:focus {
+        box-shadow: 0 0 5px gray;
+    }
+}
