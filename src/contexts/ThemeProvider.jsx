@@ -13,7 +13,7 @@ const colors = deepFreeze({
   white: "#fff",
 });
 
-const fontSize = deepFreeze({
+const fontSizes = deepFreeze({
   xsmall: "10px",
   small: "12px",
   medium: "16px",
@@ -34,7 +34,7 @@ export const ContextTheme = createContext();
 export default function ThemeProvider({ children }) {
     
   return (
-    <ContextTheme.Provider value={{ colors, fontSize, shadows }}>
+    <ContextTheme.Provider value={{ colors, fontSizes, shadows }}>
       {children}
     </ContextTheme.Provider>
   );
