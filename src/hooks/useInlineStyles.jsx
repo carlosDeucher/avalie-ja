@@ -1,6 +1,8 @@
 import handleResponsiveValues from "@/utils/handleResponsiveValues";
 import { useCallback, useEffect, useMemo, useReducer, useRef } from "react";
 import useWindowSize from "./useWindowSize";
+import useBreakpoint from "./useBreakpoint";
+import isObject from "@/utils/isObject";
 
 const initialState = {
   hover: false,
@@ -21,8 +23,8 @@ function styleReducer(state, action) {
   }
 }
 
-export default function useInlineStyle(styleFn, props) {
-  const windowWidth = useWindowSize().width;
+export default function useInlineStyle(sp, props) {
+  const breakpoint = useBreakpoint();
   const ref = useRef(null);
   const [styleState, dispatch] = useReducer(styleReducer, initialState);
   const setStyle = useCallback(
@@ -31,9 +33,19 @@ export default function useInlineStyle(styleFn, props) {
   );
 
   const style = useMemo(() => {
-    const styleWithoutResponsiveValues = styleFn(styleState, props);
-    return handleResponsiveValues(styleWithoutResponsiveValues, windowWidth);
-  }, [styleFn, styleState, props, windowWidth]);
+    if (!sp) return {};
+    if (typeof sp !== "function" && !isObject(sp)) {
+      //se sp não for uma funcao ou objeto
+      throw new Error("sp não é do tipo esperado!");
+    }
+
+    //caso seja uma funcao é passado styleState com os valores: hover, focus... e todas as props recebidas
+    const styleWithoutResponsiveValues =
+      typeof sp === "function" ? sp(styleState, props) : sp;
+
+    //setta os valores em array para strings de acordo com os breakpoints Ex.:["none","flex", "block"] mobile=none tablet=flex desktop=block
+    return handleResponsiveValues(styleWithoutResponsiveValues, breakpoint);
+  }, [sp, styleState, props, breakpoint]);
 
   useEffect(() => {
     let el;
