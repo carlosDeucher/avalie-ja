@@ -1,3 +1,7 @@
+Tarefas:{
+    Criar os breakpoints para serem utilizados em funcs como getDeviceSize ou componentes como Container
+}
+
 Referências:{
 Ideia do projeto: https://www.freecodecamp.org/portuguese/news/8-ideias-de-projeto-com-o-react-js-para-voce-comecar-a-aprender-fazendo/
 
