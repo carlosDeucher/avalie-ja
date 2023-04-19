@@ -1,7 +1,7 @@
-export function getDeviceSize(windowWidth) {
-  if (windowWidth > 1200) return "desktop";
-  if (windowWidth > 900) return "laptop";
-  if (windowWidth > 600) return "tablet";
+export function getDeviceSize(windowWidth, breakpoints) {
+  if (windowWidth > breakpoints.desktop) return "desktop";
+  if (windowWidth > breakpoints.laptop) return "laptop";
+  if (windowWidth > breakpoints.tablet) return "tablet";
   return "mobile";
 }
 

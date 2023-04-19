@@ -29,12 +29,17 @@ const shadows = deepFreeze({
   xlarge: "0 15px 25px rgba(0, 0, 0, 0.22), 0 5px 10px rgba(0, 0, 0, 0.15)",
 });
 
+const breakpoints = deepFreeze({
+  desktop: 1200,
+  laptop: 900,
+  tablet: 600,
+});
+
 export const ContextTheme = createContext();
 
 export default function ThemeProvider({ children }) {
-    
   return (
-    <ContextTheme.Provider value={{ colors, fontSizes, shadows }}>
+    <ContextTheme.Provider value={{ colors, fontSizes, shadows, breakpoints }}>
       {children}
     </ContextTheme.Provider>
   );
