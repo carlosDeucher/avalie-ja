@@ -1,5 +1,9 @@
 import React from "react";
-import styles from "./cardStyles.module.scss";
-export default function Card({ children }) {
-  return <div className={styles.card}>{children}</div>;
+export default function Card({ children, sp }) {
+  const [cardRef, style] = useInlineStyle(sp);
+  return (
+    <div ref={cardRef} style={style}>
+      {children}
+    </div>
+  );
 }

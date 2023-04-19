@@ -1,6 +1,12 @@
+import useInlineStyle from "@/hooks/useInlineStyles";
 import React from "react";
-import styles from "./boxStyles.module.scss";
 
-export default function Box({ children, style }) {
-  return <div className={styles.box} style={style}>{children}</div>;
+export default function Box({ children, sp }) {
+  const [boxRef, style] = useInlineStyle(sp);
+
+  return (
+    <div ref={boxRef} style={style}>
+      {children}
+    </div>
+  );
 }

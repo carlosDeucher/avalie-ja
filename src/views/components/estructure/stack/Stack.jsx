@@ -1,23 +1,25 @@
-import styles from "./stackStyles.module.scss";
+import useInlineStyle from "@/hooks/useInlineStyles";
 
 export default function Stack({
   children,
   justifyContent,
   direction,
   alignItems,
-  style,
-  Ref,
+  sp,
   cor,
 }) {
+  const [stackRef, style] = useInlineStyle(sp);
+  console.log("renderizou");
   const colors = {
     amarelo: "yellow",
   };
   return (
     <>
       <div
-        ref={Ref}
-        className={`${styles.flex}`}
+        ref={stackRef}
         style={{
+          display: "flex",
+          justifyContent: "space-between",
           justifyContent,
           alignItems,
           direction,
@@ -31,10 +33,3 @@ export default function Stack({
   );
 }
 
-const Card = () => {
-  return (
-    <Stack style={{ backgroundColor: "yellow" }}>
-      <div></div>
-    </Stack>
-  );
-};

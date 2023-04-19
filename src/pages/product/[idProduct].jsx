@@ -32,11 +32,18 @@ export default function Product() {
           >
             <Image src={productImage} fill alt="only tests" />
           </div>
-          <Text component="h2" fontSize={"big"} color={"secondary"}>
+          <Text
+            component="h2"
+            fontSize={"big"}
+            color={"secondary"}
+            sp={{
+              textDecoration: ["none", "none", "underline"],
+            }}
+          >
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam,
-            necessitatibus provident modi quas nam odio quod natus aspernatur?
-            Corrupti harum inventore explicabo debitis dolorem voluptas
-            repellendus laudantium dolor labore unde!
+            necessitatibus provident <span id="span">modi quas nam odio</span>{" "}
+            quod natus aspernatur? Corrupti harum inventore explicabo debitis
+            dolorem voluptas repellendus laudantium dolor labore unde!
           </Text>
         </Stack>
 
@@ -60,7 +67,7 @@ export default function Product() {
         </MainButton>
         <MainButton
           onClick={() => {
-            axios.post("/api/product/mutation/create_product", {});
+            axios.post("/api/user/query");
           }}
         >
           testar middleware

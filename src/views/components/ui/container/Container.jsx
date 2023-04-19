@@ -1,9 +1,8 @@
-import styles from "./containerStyles.module.scss";
 
 export default function Container({ children }) {
   return (
     <>
-      <div className={styles.container}>
+      <div style={{maxWidth:"800px", margin:"auto",padding:"15px 20px"}}>
         {children}
       </div>
     </>

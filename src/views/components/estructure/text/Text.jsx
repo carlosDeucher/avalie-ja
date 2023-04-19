@@ -1,38 +1,26 @@
-import styles from "./textStyles.module.scss";
+import { ContextTheme } from "@/contexts/ThemeProvider";
+import useInlineStyle from "@/hooks/useInlineStyles";
+import { useContext } from "react";
 
-export default function Text({ children, style, fontSize, color, component }) {
-  let classFont;
-  switch (fontSize) {
-    case "big": {
-      classFont = "font_size_big";
-      break;
-    }
-    case "normal": {
-      classFont = "font_size_normal";
-      break;
-    }
-    case "small": {
-      classFont = "font_size_small";
-      break;
-    }
-  }
+export default function Text({
+  children,
+  sp,
+  fontSize: fontSizeProp,
+  color,
+  component,
+}) {
+  const { fontSizes: fontSizeTheme, colors: colorsTheme } =
+    useContext(ContextTheme);
+  const [textRef, style] = useInlineStyle(sp);
 
-  let classColor;
-
-  switch (color) {
-    case "primary":
-      classColor = "color_primary";
-      break;
-    case "secondary":
-      classColor = "color_secondary";
-      break;
-  }
-
-  const className = `${styles.text} ${styles[classFont]} ${styles[classColor]}`;
   return (
     <GetTagComponent
-      className={className}
-      style={{ ...style }}
+      textRef={textRef}
+      style={{
+        ...style,
+        fontSize: fontSizeTheme[fontSizeProp],
+        color: colorsTheme[color],
+      }}
       component={component}
     >
       {children}
@@ -41,15 +29,16 @@ export default function Text({ children, style, fontSize, color, component }) {
 }
 
 function GetTagComponent(props) {
-  const { children, component } = props;
+  const { children, component, style, textRef } = props;
+  const textAttributes = { ref: textRef, style };
   switch (component) {
     case "h1":
-      return <h1 {...props}>{children}</h1>;
+      return <h1 {...textAttributes}>{children}</h1>;
     case "h2":
-      return <h2 {...props}>{children}</h2>;
+      return <h2 {...textAttributes}>{children}</h2>;
     case "h3":
-      return <h3 {...props}>{children}</h3>;
+      return <h3 {...textAttributes}>{children}</h3>;
     default:
-      return <p {...props}>{children}</p>;
+      return <p {...textAttributes}>{children}</p>;
   }
 }

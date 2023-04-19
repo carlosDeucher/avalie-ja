@@ -12,18 +12,17 @@ const stackStyleFn = (state, props) => ({
 });
 
 export default function DisplayImages({ images }) {
-  const [stackRef, style] = useInlineStyle(stackStyleFn);
-
   return (
     <Stack direction={"row"}>
       {images.length > 3 && (
-        <Stack
-          justifyContent="center"
-          alignItems="center"
-          style={{ height: "100px" }}
-        >
-          <Stack Ref={stackRef} style={style}>
-            <Icon />
+        <Stack justifyContent="center" alignItems="center" sp={stackStyleFn}>
+          <Stack>
+            <Icon
+              sp={({ hover }) => ({
+                transform: hover ? "rotate(45deg)" : "none",
+                transition: "300ms all",
+              })}
+            />
           </Stack>
         </Stack>
       )}
@@ -32,7 +31,7 @@ export default function DisplayImages({ images }) {
         return (
           <Box
             key={index}
-            style={{
+            sp={{
               backgroundColor: "black",
               height: "100px",
               width: "100px",
@@ -45,10 +44,14 @@ export default function DisplayImages({ images }) {
         <Stack
           justifyContent="center"
           alignItems="center"
-          style={{ backgroundColor: "black", height: "100px", width: "100px" }}
+          sp={{
+            backgroundColor: "black",
+            height: "100px",
+            width: "100px",
+          }}
         >
           <Box
-            style={{
+            sp={{
               backgroundColor: "#fff",
               height: "30px",
               width: "30px",
