@@ -1,5 +1,5 @@
 Tarefas:{
-    Criar os breakpoints para serem utilizados em funcs como getDeviceSize ou componentes como Container
+    Decidir se usarei scss em arquivos complexos ou nao
 }
 
 Referências:{
