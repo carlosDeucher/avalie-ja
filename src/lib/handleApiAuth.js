@@ -1,6 +1,7 @@
 import nc from "next-connect";
 import { ironSession } from "iron-session/express";
-import  ironOptions  from "./ironOptions";
+import ironOptions from "./ironOptions";
+import User from "models/user";
 
 export default function handleApiAuth() {
   return nc({
@@ -13,15 +14,28 @@ export default function handleApiAuth() {
     },
   })
     .use(ironSession(ironOptions))
-    .use((req, res, next) => {
-      // console.log('handleAuth !!!')
+    .use(async (req, res, next) => {
       if (!req.session.user) {
         res.json({
           isLoggedIn: false,
         });
       } else {
-        // console.log(req)
-        next();
+        const { email, password } = req.session.user;
+
+        const userLogged = await User.findOne({
+          where: {
+            email,
+            password,
+          },
+        });
+        if (userLogged) {
+          next();
+        } else {
+          req.session.destroy();
+          res
+            .status(400)
+            .json({ status: "error", type: "INVALID_CREDENCIALS" });
+        }
       }
     });
 }
