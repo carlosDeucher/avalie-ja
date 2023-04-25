@@ -2,22 +2,23 @@ import deepFreeze from "@/utils/deepFreeze";
 import { createContext } from "react";
 
 const colors = deepFreeze({
-  primary: "#1a1b41",
-  secondary: "#aeb8fe",
-  success: "#a9ffcb",
-  danger: "#f22b29",
-  warning: "#ffc53a",
-  info: "#17a2b8",
+  primary: "#1a1a2e",
+  secondary: {main:"#aeb8fe", hover:"#8c96db"},
+  success: "#2ecc71",
+  error: "#e74c3c",
+  warning: "#f1c40f",
+  info: "#8be9fd",
   light: "#f8f9fa",
-  dark: "#343a40",
-  white: "#fff",
+  dark: "#000000",
+  white: "#f6f6f6",
+  possibleBackground: ["#f6f6f6", "#ebebeb", "#ffffff", "#8be9fd"],
 });
 
 const fontSizes = deepFreeze({
   xsmall: "10px",
   small: "12px",
   medium: "16px",
-  large: "24px",
+  large: "32px",
   xlarge: "36px",
 });
 
@@ -32,8 +33,13 @@ const shadows = deepFreeze({
 const breakpoints = deepFreeze({
   desktop: 1200,
   laptop: 900,
-  tablet: 600,
+  tablet: 750,
+  mobile: 600,
 });
+
+const border= deepFreeze({
+  
+})
 
 export const ContextTheme = createContext();
 
