@@ -6,6 +6,7 @@ export default function Text({
   children,
   sp,
   fontSize: fontSizeProp,
+  fontWeight,
   color,
   component,
 }) {
@@ -20,6 +21,7 @@ export default function Text({
         ...style,
         fontSize: fontSizeTheme[fontSizeProp],
         color: colorsTheme[color],
+        fontWeight,
       }}
       component={component}
     >
