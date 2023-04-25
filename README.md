@@ -1,5 +1,5 @@
 Tarefas:{
-    Decidir se usarei scss em arquivos complexos ou nao
+Decidir se usarei scss em arquivos complexos ou nao
 }
 
 Referências:{
@@ -10,7 +10,9 @@ useInlineStyles: https://levelup.gitconnected.com/making-sense-of-react-inline-s
 }
 
 Layout:{
+Cadastrar produto: https://www.mercadolivre.com.br/anuncie/hub
+Cortar imagens: Alterar foto de perfil https://twitter.com/settings/profile
 Exibicao de imagens: https://www.buscape.com.br/notebook/notebook-dell-inspiron-15-intel-core-i7-11390h-15-6-16gb-ssd-512-gb-windows-11-geforce-mx450?_lc=11
-
+Login: https://www.mercadolivre.com/jms/mlb/lgz/msl/login
 }
 }
