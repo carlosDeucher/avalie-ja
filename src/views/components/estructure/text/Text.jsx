@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+
 import { ContextTheme } from "@/contexts/ThemeProvider";
 import useInlineStyle from "@/hooks/useInlineStyles";
 import { useContext } from "react";
@@ -31,8 +33,8 @@ export default function Text({
 }
 
 function GetTagComponent(props) {
-  const { children, component, style, textRef } = props;
-  const textAttributes = { ref: textRef, style };
+  const { children, component, style: css, textRef } = props;
+  const textAttributes = { ref: textRef, css };
   switch (component) {
     case "h1":
       return <h1 {...textAttributes}>{children}</h1>;

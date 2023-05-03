@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+
 import useInlineStyle from "@/hooks/useInlineStyles";
 import React from "react";
 
@@ -24,7 +26,7 @@ export default function ButtonText({ disabled, sp, type, onClick, children }) {
       ref={buttonRef}
       onClick={onClick}
       type={type}
-      style={{ ...defaultStyle, ...currentDisabledStyle, ...sp }}
+      css={{ ...defaultStyle, ...currentDisabledStyle, ...sp }}
     >
       {children}
     </button>

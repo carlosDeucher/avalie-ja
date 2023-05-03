@@ -1,12 +1,15 @@
+/** @jsxImportSource @emotion/react */
+
 import useInlineStyle from "@/hooks/useInlineStyles";
 
 const defaultButtonStyle = ({ hover }, theme) => ({
   padding: "10px 15px",
   border: "none",
   cursor: "pointer",
-  backgroundColor: hover
-    ? theme.colors["secondary"].hover
-    : theme.colors["secondary"].main,
+  "&:hover": {
+    backgroundColor: theme.colors["secondary"].hover,
+  },
+  backgroundColor: theme.colors["secondary"].main,
   color: theme.colors["light"],
   fontSize: theme.fontSizes.small,
   borderRadius: "0.3em",
@@ -20,7 +23,13 @@ const disabledStyle = {
   cursor: "default",
 };
 
-export default function ButtonContained({ onClick, children, sp, disabled, type }) {
+export default function ButtonContained({
+  onClick,
+  children,
+  sp,
+  disabled,
+  type,
+}) {
   const [buttonRef, defaultStyle] = useInlineStyle(defaultButtonStyle);
 
   const currentDisabledStyle = disabled ? disabledStyle : {};
@@ -29,7 +38,7 @@ export default function ButtonContained({ onClick, children, sp, disabled, type 
       type={type}
       ref={buttonRef}
       onClick={onClick}
-      style={{
+      css={{
         ...defaultStyle,
         ...currentDisabledStyle,
         ...sp,
