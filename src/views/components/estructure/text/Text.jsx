@@ -12,18 +12,17 @@ export default function Text({
   color,
   component,
 }) {
-  const { fontSizes: fontSizeTheme, colors: colorsTheme } =
+  const { fontSizes: themeFontSize, colors: themeColors } =
     useContext(ContextTheme);
-  const [textRef, style] = useInlineStyle(sp);
+  const style = useInlineStyle(sp);
 
   return (
     <GetTagComponent
-      textRef={textRef}
       style={{
-        ...style,
-        fontSize: fontSizeTheme[fontSizeProp],
-        color: colorsTheme[color],
+        fontSize: themeFontSize[fontSizeProp],
+        color: themeColors[color],
         fontWeight,
+        ...style,
       }}
       component={component}
     >

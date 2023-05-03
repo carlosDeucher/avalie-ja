@@ -15,11 +15,10 @@ export default function Stack({
   cor,
 }) {
   const { colors } = useContext(ContextTheme);
-  const [stackRef, style] = useInlineStyle(sp);
+  const style = useInlineStyle(sp);
   return (
     <>
       <div
-        ref={stackRef}
         css={{
           display: "flex",
           justifyContent: "space-between",

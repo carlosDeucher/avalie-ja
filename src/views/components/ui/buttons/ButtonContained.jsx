@@ -2,7 +2,7 @@
 
 import useInlineStyle from "@/hooks/useInlineStyles";
 
-const defaultButtonStyle = ({ hover }, theme) => ({
+const defaultButtonStyle = (theme) => ({
   padding: "10px 15px",
   border: "none",
   cursor: "pointer",
@@ -30,16 +30,15 @@ export default function ButtonContained({
   disabled,
   type,
 }) {
-  const [buttonRef, defaultStyle] = useInlineStyle(defaultButtonStyle);
+  const style = useInlineStyle(defaultButtonStyle);
 
   const currentDisabledStyle = disabled ? disabledStyle : {};
   return (
     <button
       type={type}
-      ref={buttonRef}
       onClick={onClick}
       css={{
-        ...defaultStyle,
+        ...style,
         ...currentDisabledStyle,
         ...sp,
       }}

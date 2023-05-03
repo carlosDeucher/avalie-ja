@@ -3,7 +3,7 @@
 import useInlineStyle from "@/hooks/useInlineStyles";
 import React from "react";
 
-const defaultButtonStyle = (styleButton, theme) => ({
+const defaultButtonStyle = (theme) => ({
   padding: "10px 15px",
   border: "none",
   cursor: "pointer",
@@ -19,14 +19,13 @@ const disabledStyle = {
 };
 
 export default function ButtonText({ disabled, sp, type, onClick, children }) {
-  const [buttonRef, defaultStyle] = useInlineStyle(defaultButtonStyle);
+  const style = useInlineStyle(defaultButtonStyle);
   const currentDisabledStyle = disabled ? disabledStyle : {};
   return (
     <button
-      ref={buttonRef}
       onClick={onClick}
       type={type}
-      css={{ ...defaultStyle, ...currentDisabledStyle, ...sp }}
+      css={{ ...style, ...currentDisabledStyle, ...sp }}
     >
       {children}
     </button>
