@@ -14,7 +14,7 @@ export default function LoginView() {
           rowGap={"0.8rem"}
           sp={{
             marginTop: "30px",
-            flexDirection: ["column", "column", "row"],
+            flexDirection: ["column", "row"],
             minWidth: ["100%", "100%", "none"],
           }}
         >

@@ -27,7 +27,14 @@ export default function Form() {
   };
 
   return (
-    <Box sp={{ minWidth: ["100%", "100%", "490px"] }}>
+    <Box
+      sp={{
+        minWidth: ["100%", "350px", "470px"],
+        width: "100%",
+        maxWidth: "490px",
+        flex:1
+      }}
+    >
       <Card
         component="form"
         onSubmit={handleSubmit}
@@ -72,7 +79,7 @@ export default function Form() {
           rowGap={"0.5rem"}
           sp={{
             marginTop: "15px",
-            flexDirection: ["column", "column", "row"],
+            flexDirection: ["column", "row", "row"],
           }}
         >
           <ButtonContained type="submit" disabled={isInputEmpty}>

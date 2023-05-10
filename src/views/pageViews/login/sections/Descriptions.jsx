@@ -14,7 +14,7 @@ export default function Descriptions() {
   return (
     <Box
       sp={{
-        maxWidth: ["100%", "100%", "330px"],
+        maxWidth: ["100%", "255px", "300px"],
         width: "100%",
         marginRight: "30px",
       }}
@@ -27,7 +27,7 @@ export default function Descriptions() {
         do Avalie&nbsp;Ja
       </Text>
       <Divider sp={{ width: "65%", margin: "15px 0" }} />
-      <Box sp={{ maxWidth: ["100%", "100%", "250px"] }}>
+      <Box sp={{ maxWidth: ["100%", "240px", "250px"] }}>
         <Text sp={{ fontWeight: 700, fontSize: fontSizesTheme.small }}>
           Powered by Carlos Henrique Deucher
         </Text>
