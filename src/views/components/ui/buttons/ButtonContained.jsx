@@ -1,9 +1,10 @@
 /** @jsxImportSource @emotion/react */
 
 import useInlineStyle from "@/hooks/useInlineStyles";
+import { jsx } from "@emotion/react";
 
-const defaultButtonStyle = (theme) => ({
-  padding: "10px 15px",
+const defaultButtonStyle = (theme, { disabled }) => ({
+  padding: "0 24px",
   border: "none",
   cursor: "pointer",
   "&:hover": {
@@ -11,36 +12,49 @@ const defaultButtonStyle = (theme) => ({
   },
   backgroundColor: theme.colors["secondary"].main,
   color: theme.colors["light"],
-  fontSize: theme.fontSizes.small,
+  fontSize: theme.fontSizes.medium,
   borderRadius: "0.3em",
-  transition: "background-color 350ms",
-  fontWeight: "bold",
+  transition: !disabled && "background-color 350ms",
+  fontWeight: "600",
+  height: "48px",
 });
 
-const disabledStyle = {
-  backgroundColor: "black",
-  color: "grey",
+const disabledStyle = (theme) => ({
+  backgroundColor: theme.colors.grey[3],
+  "&:hover": {
+    backgroundColor: theme.colors.grey[3],
+  },
+  color: theme.colors.grey[5],
+  fontWeight: 600,
   cursor: "default",
-};
+});
 
-export default function ButtonContained({
-  onClick,
-  children,
-  sp,
-  disabled,
-  type,
-}) {
-  const style = useInlineStyle(defaultButtonStyle);
+export default function ButtonContained(props) {
+  const { sp, component, disabled } = props;
+  const style = useInlineStyle(defaultButtonStyle, { disabled });
+  const currentDisabledStyle = useInlineStyle(disabled && disabledStyle);
+  const styleProps = useInlineStyle(sp);
 
-  const currentDisabledStyle = disabled ? disabledStyle : {};
+  const commonProps = { ...props };
+  delete commonProps.sp;
+  delete commonProps.component;
+  delete commonProps.disabled;
+
+  return jsx(component || "button", {
+    css: {
+      ...style,
+      ...currentDisabledStyle,
+      ...styleProps,
+    },
+    ...commonProps,
+  });
+
   return (
     <button
-      type={type}
-      onClick={onClick}
       css={{
         ...style,
         ...currentDisabledStyle,
-        ...sp,
+        ...styleProps,
       }}
     >
       {children}

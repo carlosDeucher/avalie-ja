@@ -1,15 +1,20 @@
 /** @jsxImportSource @emotion/react */
 
 import useInlineStyle from "@/hooks/useInlineStyles";
-import React from "react";
+import { jsx } from "@emotion/react";
 
 export default function Box(props) {
-  const { children, sp, id } = props;
+  const { sp, component } = props;
   const style = useInlineStyle(sp);
 
-  return (
-    <div css={style} id={id}>
-      {children}
-    </div>
-  );
+  const commonProps = { ...props };
+  delete commonProps.sp;
+  delete commonProps.component;
+
+  return jsx(component || "div", {
+    css: style,
+    ...commonProps,
+    sp: undefined,
+    component: undefined,
+  });
 }

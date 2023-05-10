@@ -1,38 +1,47 @@
 /** @jsxImportSource @emotion/react */
 
-import { ContextTheme } from "@/contexts/ThemeProvider";
 import useInlineStyle from "@/hooks/useInlineStyles";
-import { useContext } from "react";
+import { jsx } from "@emotion/react";
 
-export default function Stack({
-  children,
-  justifyContent,
-  direction,
-  alignItems,
-  columnGap,
-  rowGap,
-  sp,
-  cor,
-}) {
-  const { colors } = useContext(ContextTheme);
-  const style = useInlineStyle(sp);
-  return (
-    <>
-      <div
-        css={{
-          display: "flex",
-          justifyContent: "space-between",
-          justifyContent,
-          alignItems,
-          direction,
-          rowGap,
-          columnGap,
-          backgroundColor: colors[cor],
-          ...style,
-        }}
-      >
-        {children}
-      </div>
-    </>
-  );
+const stylesDefault = { display: "flex", justifyContent: "space-between" };
+
+export default function Stack(props) {
+  const {
+    sp,
+    component,
+    justifyContent,
+    direction,
+    alignItems,
+    columnGap,
+    rowGap,
+    width,
+    height,
+  } = props;
+  const stylesProps = useInlineStyle(sp);
+
+  const commonProps = { ...props };
+
+  return jsx(component || "div", {
+    css: {
+      ...stylesDefault,
+      justifyContent,
+      alignItems,
+      rowGap,
+      columnGap,
+      flexDirection: direction,
+      width,
+      height,
+      ...stylesProps,
+    },
+    ...commonProps,
+    sp: undefined,
+    component: undefined,
+    justifyContent: undefined,
+    alignItems: undefined,
+    direction: undefined,
+    rowGap: undefined,
+    columnGap: undefined,
+    width: undefined,
+    height: undefined,
+  });
 }

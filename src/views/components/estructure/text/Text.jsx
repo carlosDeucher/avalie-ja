@@ -2,46 +2,28 @@
 
 import { ContextTheme } from "@/contexts/ThemeProvider";
 import useInlineStyle from "@/hooks/useInlineStyles";
+import { jsx } from "@emotion/react";
 import { useContext } from "react";
 
-export default function Text({
-  children,
-  sp,
-  fontSize: fontSizeProp,
-  fontWeight,
-  color,
-  component,
-}) {
-  const { fontSizes: themeFontSize, colors: themeColors } =
-    useContext(ContextTheme);
-  const style = useInlineStyle(sp);
+export default function Text(props) {
+  const { fontSizes: themeFontSize } = useContext(ContextTheme);
+  const { sp, fontSize: fontSizeProp, fontWeight, color, component } = props;
+  const styleProps = useInlineStyle(sp);
 
-  return (
-    <GetTagComponent
-      style={{
-        fontSize: themeFontSize[fontSizeProp],
-        color: themeColors[color],
-        fontWeight,
-        ...style,
-      }}
-      component={component}
-    >
-      {children}
-    </GetTagComponent>
-  );
-}
+  const commonProps = { ...props };
 
-function GetTagComponent(props) {
-  const { children, component, style: css, textRef } = props;
-  const textAttributes = { ref: textRef, css };
-  switch (component) {
-    case "h1":
-      return <h1 {...textAttributes}>{children}</h1>;
-    case "h2":
-      return <h2 {...textAttributes}>{children}</h2>;
-    case "h3":
-      return <h3 {...textAttributes}>{children}</h3>;
-    default:
-      return <p {...textAttributes}>{children}</p>;
-  }
+  return jsx(component || "p", {
+    css: {
+      fontSize: themeFontSize[fontSizeProp],
+      color: color,
+      fontWeight,
+      ...styleProps,
+    },
+    ...commonProps,
+    sp: undefined,
+    component: undefined,
+    fontSize: undefined,
+    fontWeight: undefined,
+    color: undefined,
+  });
 }

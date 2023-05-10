@@ -8,9 +8,9 @@ const defaultButtonStyle = (theme) => ({
   border: "none",
   cursor: "pointer",
   color: theme.colors["secondary"].main,
-  fontSize: theme.fontSizes.small,
+  fontSize: theme.fontSizes.medium,
   borderRadius: "0.3em",
-  fontWeight: "bold",
+  fontWeight: "600",
   backgroundColor: "transparent",
 });
 
