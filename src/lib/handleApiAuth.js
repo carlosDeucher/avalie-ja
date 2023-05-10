@@ -1,7 +1,7 @@
 import nc from "next-connect";
 import { ironSession } from "iron-session/express";
 import ironOptions from "./ironOptions";
-import User from "models/user";
+import Users from "models/user";
 
 export default function handleApiAuth() {
   return nc({
@@ -22,7 +22,7 @@ export default function handleApiAuth() {
       } else {
         const { email, password } = req.session.user;
 
-        const userLogged = await User.findOne({
+        const userLogged = await Users.findOne({
           where: {
             email,
             password,
