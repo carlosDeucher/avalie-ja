@@ -1,3 +1,5 @@
+import isObject from "./isObject";
+
 export function getDeviceSize(windowWidth, breakpoints) {
   if (windowWidth > breakpoints.desktop) return "desktop";
   if (windowWidth > breakpoints.laptop) return "laptop";
@@ -9,27 +11,50 @@ export default function handleResponsiveValues(
   styleWithoutResponsiveValues,
   breakpoint
 ) {
-  const styleEntries = Object.entries(styleWithoutResponsiveValues);
-  const styleEntriesWithResponsiveValues = styleEntries.map((styleEntrie) => {
-    // itero o array buscando por arrays ou objetos
-    if (Array.isArray(styleEntrie[1])) {
-      const cssArray = styleEntrie[1];
-      switch (breakpoint) {
-        case "mobile":
-          styleEntrie[1] = cssArray[0];
-          break;
-        case "tablet":
-          styleEntrie[1] = cssArray[1] || cssArray[0];
-          break;
-        case "laptop":
-          styleEntrie[1] = cssArray[2] || cssArray[1] || cssArray[0];
-          break;
-        case "desktop":
-          styleEntrie[1] =
-            cssArray[3] || cssArray[2] || cssArray[1] || cssArray[0];
+  function iterateAllKeysToHandleResponsiveValues(objectToHandle) {
+    const objectToHandleClone = { ...objectToHandle };
+    for (let chave in objectToHandleClone) {
+      if (isObject(objectToHandleClone[chave])) {
+        objectToHandleClone[chave] = iterateAllKeysToHandleResponsiveValues(
+          objectToHandleClone[chave]
+        );
+      } else {
+        objectToHandleClone[chave] = convertResponsiveValues(
+          objectToHandleClone[chave]
+        );
       }
     }
-    return styleEntrie;
-  });
-  return Object.fromEntries(styleEntriesWithResponsiveValues);
+    const objectHandled = objectToHandleClone;
+
+    return objectHandled;
+  }
+  function convertResponsiveValues(value) {
+    if (Array.isArray(value)) {
+      const cssArray = value;
+      switch (breakpoint) {
+        case "mobile":
+          value = cssArray[0];
+          break;
+        case "tablet":
+          value = cssArray[1] || cssArray[0];
+          break;
+        case "laptop":
+          value = cssArray[2] || cssArray[1] || cssArray[0];
+          break;
+        case "desktop":
+          value = cssArray[3] || cssArray[2] || cssArray[1] || cssArray[0];
+      }
+    }
+
+    return value;
+
+    // const styleEntries = Object.entries(styleWithoutResponsiveValues);
+    // const styleEntriesWithResponsiveValues = styleEntries.map((styleEntrie) => {
+    //   // itero o array buscando por arrays ou objetos
+
+    //   return styleEntrie;
+    // });
+    // return Object.fromEntries(styleEntriesWithResponsiveValues);
+  }
+  return iterateAllKeysToHandleResponsiveValues(styleWithoutResponsiveValues);
 }
