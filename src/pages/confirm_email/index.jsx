@@ -1,10 +1,9 @@
-import LoginView from "@/views/pageViews/login";
+import ConfirmEmailView from "@/views/pageViews/confirmEmail";
 import axios from "axios";
 import { createContext } from "react";
 
 export const ApiLoginContext = createContext();
-export default function Login() {
-  
+export default function ConfirmEmail() {
   const confirmUserEmail = async (email) => {
     try {
       const { data } = await axios.post("/api/user/mutation/get_user", {
@@ -17,7 +16,7 @@ export default function Login() {
   };
   return (
     <ApiLoginContext.Provider value={{ confirmUserEmail }}>
-      <LoginView />
+      <ConfirmEmailView />
     </ApiLoginContext.Provider>
   );
 }

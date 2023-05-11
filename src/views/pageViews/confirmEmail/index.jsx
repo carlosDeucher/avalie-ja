@@ -4,7 +4,7 @@ import ContainerLogin from "@/views/components/estructure/container/ContainerLog
 import Descriptions from "./sections/Descriptions";
 import Form from "./sections/Form";
 
-export default function LoginView() {
+export default function ConfirmEmailView() {
   return (
     <>
       <Header></Header>
