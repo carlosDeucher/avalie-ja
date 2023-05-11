@@ -28,7 +28,5 @@ export default function Card(props) {
       ...styleProps,
     },
     ...commonProps,
-    sp: undefined,
-    component: undefined,
   });
 }

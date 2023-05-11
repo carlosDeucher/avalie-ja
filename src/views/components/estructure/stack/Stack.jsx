@@ -21,6 +21,16 @@ export default function Stack(props) {
 
   const commonProps = { ...props };
 
+    delete commonProps.sp;
+    delete commonProps.component;
+    delete commonProps.justifyContent;
+    delete commonProps.direction;
+    delete commonProps.alignItems;
+    delete commonProps.columnGap;
+    delete commonProps.rowGap;
+    delete commonProps.width;
+    delete commonProps.height;
+
   return jsx(component || "div", {
     css: {
       ...stylesDefault,
@@ -34,14 +44,5 @@ export default function Stack(props) {
       ...stylesProps,
     },
     ...commonProps,
-    sp: undefined,
-    component: undefined,
-    justifyContent: undefined,
-    alignItems: undefined,
-    direction: undefined,
-    rowGap: undefined,
-    columnGap: undefined,
-    width: undefined,
-    height: undefined,
   });
 }

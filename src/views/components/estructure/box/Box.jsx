@@ -8,13 +8,12 @@ export default function Box(props) {
   const style = useInlineStyle(sp);
 
   const commonProps = { ...props };
+
   delete commonProps.sp;
   delete commonProps.component;
 
   return jsx(component || "div", {
     css: style,
     ...commonProps,
-    sp: undefined,
-    component: undefined,
   });
 }

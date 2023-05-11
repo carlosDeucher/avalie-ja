@@ -12,6 +12,12 @@ export default function Text(props) {
 
   const commonProps = { ...props };
 
+  delete commonProps.sp;
+  delete commonProps.component;
+  delete commonProps.fontSize;
+  delete commonProps.fontWeight;
+  delete commonProps.color;
+
   return jsx(component || "p", {
     css: {
       fontSize: themeFontSize[fontSizeProp],
@@ -20,10 +26,5 @@ export default function Text(props) {
       ...styleProps,
     },
     ...commonProps,
-    sp: undefined,
-    component: undefined,
-    fontSize: undefined,
-    fontWeight: undefined,
-    color: undefined,
   });
 }
