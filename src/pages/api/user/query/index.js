@@ -1,9 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import User from "models/user";
+import Users from "models/user";
 
-export default async function handler(req, res) {
+import handleApiAuth from "@/lib/handleApiAuth";
+
+export default handleApiAuth().post(async (req, res) => {
   try {
-    const users = await User.findAll({ where: { id: req.body.idList } });
+    const users = await Users.findAll({ where: { id: req.body.idList } });
     res.json({
       response: users,
       status: "success",
@@ -11,4 +13,4 @@ export default async function handler(req, res) {
   } catch {
     res.status(500).json({ status: "error", type: "UNKNOWN_ERROR" });
   }
-}
+});
