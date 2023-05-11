@@ -1,5 +1,5 @@
 import { ContextTheme } from "@/contexts/ThemeProvider";
-import { getDeviceSize } from "@/utils/handleResponsiveValues";
+import  getDeviceSize  from "@/utils/getDeviceSize.js";
 import { useContext, useEffect, useState } from "react";
 
 export default function useBreakpoint() {
