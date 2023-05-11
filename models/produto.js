@@ -1,8 +1,8 @@
 import { Sequelize } from "sequelize";
 import database from "config/postgresdb";
-import User from "./user";
+import Users from "./user";
 
-const Produto = database.define("products", {
+const Products = database.define("products", {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -31,8 +31,8 @@ const Produto = database.define("products", {
   },
 });
 
-User.hasMany(Produto, {
+Users.hasMany(Products, {
   constraints: true,
   foreignKey: "idUser",
 });
-export default Produto;
+export default Products;

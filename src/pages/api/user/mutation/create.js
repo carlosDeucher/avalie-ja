@@ -1,10 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import User from "models/user";
+import Users from "models/user";
 
 export default async function handler(req, res) {
   try {
     //busca email ja existente
-    const searchEmail = await User.findOne({
+    const searchEmail = await Users.findOne({
       where: {
         email: req.body.email,
       },
@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     if (searchEmail) {
       res.status(400).json({ type: "USED_EMAIL", status: "error" });
     } else {
-      await User.create({
+      await Users.create({
         username: req.body.username,
         email: req.body.email,
         password: req.body.passwords,

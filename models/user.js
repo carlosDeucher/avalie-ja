@@ -1,9 +1,9 @@
 import { Sequelize } from "sequelize";
 import database from "config/postgresdb";
-// import Comment from "./comment";
-// import Produto from "./produto";
+// import Comments from "./comment";
+// import Products from "./produto";
 
-const User = database.define("users", {
+const Users = database.define("users", {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -25,14 +25,14 @@ const User = database.define("users", {
   region: Sequelize.STRING,
 });
 
-// User.hasMany(Comment, {
+// Users.hasMany(Comments, {
 //   constraints: true,
 //   foreignKey: "idUsers",
 // });
 
-// User.hasMany(Produto, {
+// Users.hasMany(Products, {
 //   constraints: true,
 //   foreignKey: "idProduct",
 // });
 
-export default User;
+export default Users;
