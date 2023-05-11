@@ -1,5 +1,5 @@
 import handleApiUnAuth from "@/lib/handleApiUnAuth";
-=import Users from "models/user";
+import Users from "models/user";
 
 export default handleApiUnAuth().post(async (req, res) => {
   try {
