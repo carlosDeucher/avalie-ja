@@ -1,11 +1,6 @@
 import isObject from "./isObject";
 
-export function getDeviceSize(windowWidth, breakpoints) {
-  if (windowWidth > breakpoints.desktop) return "desktop";
-  if (windowWidth > breakpoints.laptop) return "laptop";
-  if (windowWidth > breakpoints.tablet) return "tablet";
-  return "mobile";
-}
+
 
 export default function handleResponsiveValues(
   styleWithoutResponsiveValues,
