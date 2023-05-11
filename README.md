@@ -1,5 +1,5 @@
 Tarefas:{
-Decidir se usarei scss em arquivos complexos ou nao
+olhar as vantagens de aplicar fontes utilizando nextFonts
 }
 
 Referências:{
