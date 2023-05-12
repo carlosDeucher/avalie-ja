@@ -5,7 +5,11 @@ export default handleApiUnAuth().post(async (req, res) => {
   try {
     const user = await Users.findOne({ where: { email: req.body.email } });
     if (user) {
-      res.json({ type: "USER_FOUND", status: "success" });
+      res.json({
+        type: "USER_FOUND",
+        status: "success",
+        data: { username: user.username },
+      });
     } else {
       res.status(200).json({ status: "error", type: "USER_NOT_FOUND" });
     }

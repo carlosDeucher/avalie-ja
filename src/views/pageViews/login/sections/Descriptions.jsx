@@ -7,10 +7,15 @@ import Stack from "@/views/components/estructure/stack/Stack";
 import { ContextTheme } from "@/contexts/ThemeProvider";
 import { useContext } from "react";
 import Text from "@/views/components/estructure/text/Text";
+import { useRouter } from "next/router";
+import { ViewLoginContext } from "..";
 
 export default function Descriptions() {
   const { fontSizes: fontSizesTheme, colors: colorsTheme } =
     useContext(ContextTheme);
+  const { step } = useContext(ViewLoginContext);
+  const { query } = useRouter();
+  
   return (
     <Box
       sp={{
@@ -19,13 +24,25 @@ export default function Descriptions() {
         marginRight: "30px",
       }}
     >
-      <Text fontSize={"large"} fontWeight={600}>
-        Digite o seu{" "}
-        <Text component={"span"} sp={{ whiteSpace: "nowrap" }}>
-          e-mail
-        </Text>{" "}
-        do Avalie&nbsp;Ja
-      </Text>
+      {step === "confirmEmail" && (
+        <Text fontSize={"large"} fontWeight={600}>
+          Digite o seu{" "}
+          <Text component={"span"} sp={{ whiteSpace: "nowrap" }}>
+            e-mail
+          </Text>{" "}
+          do Avalie&nbsp;Ja
+        </Text>
+      )}
+      {step === "login" && (
+        <Text fontSize={"large"} fontWeight={600}>
+          Olá,{" "}
+          <Text component={"span"} sp={{ whiteSpace: "nowrap" }}>
+            {decodeURI(query.username)}!
+          </Text>{" "}
+          Digite sua senha do Avalie&nbsp;Ja
+        </Text>
+      )}
+
       <Divider sp={{ width: "65%", margin: "15px 0" }} />
       <Box sp={{ maxWidth: ["100%", "240px", "250px"] }}>
         <Text sp={{ fontWeight: 700, fontSize: fontSizesTheme.small }}>
