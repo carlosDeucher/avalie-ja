@@ -18,7 +18,13 @@ export default function Input({
   const inputRef = useRef(null);
   return (
     <>
-      <label css={{ fontSize: fontSizes["small"], marginBottom: "5px" }}>
+      <label
+        css={{
+          fontSize: fontSizes["small"],
+          marginBottom: "4px",
+          display: "inline-block",
+        }}
+      >
         {labelText}
       </label>
       <div
