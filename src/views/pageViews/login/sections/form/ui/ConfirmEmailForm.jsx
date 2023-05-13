@@ -1,45 +1,17 @@
-import { IoMdAlert } from "react-icons/Io";
-import Text from "@/views/components/estructure/text/Text";
-import ButtonContained from "@/views/components/ui/buttons/ButtonContained";
-import Card from "@/views/components/estructure/card/Card";
+import { ContextTheme } from "@/contexts/ThemeProvider";
+import { ViewLoginContext } from "../../..";
 import Input from "@/views/components/ui/input/Input";
 import Box from "@/views/components/estructure/box/Box";
 import Stack from "@/views/components/estructure/stack/Stack";
-import ButtonText from "@/views/components/ui/buttons/ButtonText";
-import { useContext, useState } from "react";
-import { ContextTheme } from "@/contexts/ThemeProvider";
+import { IoMdAlert } from "react-icons/Io";
+import Text from "@/views/components/estructure/text/Text";
+import ButtonContained from "@/views/components/ui/buttons/ButtonContained";
 import { ApiLoginContext } from "@/pages/login";
+import { useContext, useState } from "react";
 import { useRouter } from "next/router";
-import { ViewLoginContext } from "..";
+import ButtonText from "@/views/components/ui/buttons/ButtonText";
 
-export default function Form() {
-  const { step } = useContext(ViewLoginContext);
-  
-  return (
-    <Box
-      sp={{
-        minWidth: ["100%", "350px", "470px"],
-        width: "100%",
-        maxWidth: "490px",
-        flex: 1,
-      }}
-    >
-      <Card
-        sp={{
-          padding: ["30px", "30px", "40px"],
-          display: "flex",
-          flexDirection: "column",
-          width: "100%",
-        }}
-      >
-        {step === "confirmEmail" && <ConfirmEmailForm />}
-        {step === "login" && <LoginForm />}
-      </Card>
-    </Box>
-  );
-}
-
-const ConfirmEmailForm = () => {
+export default function ConfirmEmailForm() {
   const { setStep } = useContext(ViewLoginContext);
   const { colors: colorsTheme } = useContext(ContextTheme);
   const { confirmUserEmail } = useContext(ApiLoginContext);
@@ -51,12 +23,14 @@ const ConfirmEmailForm = () => {
     e.preventDefault();
     const email = e.target[0].value;
     const data = await confirmUserEmail(email);
-    if (data) {
       if (data.status === "success") {
         setStep("login");
-        push(`/login?step=login&username=${encodeURI(data.data.username)}`);
+        push(
+          `/login?step=login&username=${encodeURI(data.data.username)}&userId=${
+            data.data.id
+          }`
+        );
       } else if (data.type === "USER_NOT_FOUND") setIsUserNotfound(true);
-    }
   };
 
   return (
@@ -101,8 +75,4 @@ const ConfirmEmailForm = () => {
       </Stack>
     </Box>
   );
-};
-
-const LoginForm = () => {
-  return <></>;
-};
+}

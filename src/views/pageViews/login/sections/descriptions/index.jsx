@@ -8,7 +8,7 @@ import { ContextTheme } from "@/contexts/ThemeProvider";
 import { useContext } from "react";
 import Text from "@/views/components/estructure/text/Text";
 import { useRouter } from "next/router";
-import { ViewLoginContext } from "..";
+import { ViewLoginContext } from "../..";
 
 export default function Descriptions() {
   const { fontSizes: fontSizesTheme, colors: colorsTheme } =

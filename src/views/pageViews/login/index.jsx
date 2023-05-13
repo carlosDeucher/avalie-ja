@@ -1,10 +1,10 @@
 import Stack from "@/views/components/estructure/stack/Stack";
 import Header from "@/views/components/ui/header/Header";
 import ContainerLogin from "@/views/components/estructure/container/ContainerLogin";
-import Descriptions from "./sections/Descriptions";
-import Form from "./sections/Form";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Form from "./sections/form";
+import Descriptions from "./sections/descriptions";
 
 export const ViewLoginContext = createContext();
 export default function LoginView() {
