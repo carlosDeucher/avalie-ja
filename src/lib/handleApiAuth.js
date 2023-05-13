@@ -20,11 +20,11 @@ export default function handleApiAuth() {
           isLoggedIn: false,
         });
       } else {
-        const { email, password } = req.session.user;
+        const { idUser, password } = req.session.user;
 
         const userLogged = await Users.findOne({
           where: {
-            email,
+            idUser,
             password,
           },
         });

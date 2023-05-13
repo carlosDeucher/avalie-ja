@@ -9,22 +9,23 @@ export default handleApiUnAuth().post(async (req, res) => {
   try {
     const userLogged = await Users.findOne({
       where: {
-        email: req.body.email,
+        id: req.body.idUser,
         password: req.body.password,
       },
     });
 
     if (userLogged) {
       req.session.user = {
-        email: req.body.email,
+        idUser: req.body.idUser,
         password: req.body.password,
       };
       await req.session.save();
       res.json({ type: "USER_LOGGED", status: "success" });
     } else {
-      res.status(400).json({ status: "error", type: "INVALID_CREDENCIALS" });
+      res.status(200).json({ status: "error", type: "INVALID_CREDENCIALS" });
     }
   } catch (err) {
+    console.log(err)
     res.status(500).json({ status: "error", type: "UNKNOWN_ERROR" });
   }
 });

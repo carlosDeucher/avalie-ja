@@ -8,7 +8,7 @@ export default handleApiUnAuth().post(async (req, res) => {
       res.json({
         type: "USER_FOUND",
         status: "success",
-        data: { username: user.username },
+        data: { username: user.username, id: user.id },
       });
     } else {
       res.status(200).json({ status: "error", type: "USER_NOT_FOUND" });
