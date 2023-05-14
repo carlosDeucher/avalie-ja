@@ -10,6 +10,7 @@ import { ApiLoginContext } from "@/pages/login";
 import { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import ButtonText from "@/views/components/ui/buttons/ButtonText";
+import Link from "next/link";
 
 export default function ConfirmEmailForm() {
   const { setStep } = useContext(ViewLoginContext);
@@ -23,14 +24,14 @@ export default function ConfirmEmailForm() {
     e.preventDefault();
     const email = e.target[0].value;
     const data = await confirmUserEmail(email);
-      if (data.status === "success") {
-        setStep("login");
-        push(
-          `/login?step=login&username=${encodeURI(data.data.username)}&userId=${
-            data.data.id
-          }`
-        );
-      } else if (data.type === "USER_NOT_FOUND") setIsUserNotfound(true);
+    if (data.status === "success") {
+      setStep("login");
+      push(
+        `/login?step=login&username=${encodeURI(data.data.username)}&userId=${
+          data.data.id
+        }`
+      );
+    } else if (data.type === "USER_NOT_FOUND") setIsUserNotfound(true);
   };
 
   return (
@@ -71,7 +72,9 @@ export default function ConfirmEmailForm() {
         <ButtonContained type="submit" disabled={isInputEmpty}>
           Continuar
         </ButtonContained>
-        <ButtonText>Criar conta</ButtonText>
+        <Link href="/user_register">
+          <ButtonText>Criar conta</ButtonText>
+        </Link>
       </Stack>
     </Box>
   );
