@@ -5,12 +5,12 @@ import {
 } from "react";
 import useBreakpoint from "./useBreakpoint";
 import isObject from "@/utils/isObject";
-import { ContextTheme } from "@/contexts/ThemeProvider";
+import { ThemeContext } from "@/contexts/ThemeProvider";
 
 
 export default function useInlineStyle(sp, props) {
   const breakpoint = useBreakpoint();
-  const theme = useContext(ContextTheme);
+  const theme = useContext(ThemeContext);
 
   const style = useMemo(() => {
     if (!sp) return {};

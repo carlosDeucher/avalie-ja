@@ -4,7 +4,7 @@ import { MdArrowForwardIos } from "react-icons/Md";
 import { FiGithub } from "react-icons/Fi";
 import Box from "@/views/components/estructure/box/Box";
 import Stack from "@/views/components/estructure/stack/Stack";
-import { ContextTheme } from "@/contexts/ThemeProvider";
+import { ThemeContext } from "@/contexts/ThemeProvider";
 import { useContext } from "react";
 import Text from "@/views/components/estructure/text/Text";
 import { useRouter } from "next/router";
@@ -12,7 +12,7 @@ import { ViewLoginContext } from "../..";
 
 export default function Descriptions() {
   const { fontSizes: fontSizesTheme, colors: colorsTheme } =
-    useContext(ContextTheme);
+    useContext(ThemeContext);
   const { step } = useContext(ViewLoginContext);
   const { query } = useRouter();
   

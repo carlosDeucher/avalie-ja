@@ -1,9 +1,9 @@
-import { ContextTheme } from "@/contexts/ThemeProvider";
+import { ThemeContext } from "@/contexts/ThemeProvider";
 import { css, Global } from "@emotion/react";
 import { useContext } from "react";
 
 export default function GlobalStyle() {
-  const themeProvider = useContext(ContextTheme);
+  const themeProvider = useContext(ThemeContext);
   return (
     <Global
       styles={css`

@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 
-import { ContextTheme } from "@/contexts/ThemeProvider";
+import { ThemeContext } from "@/contexts/ThemeProvider";
 import { useContext } from "react";
 
 export default function Container({ maxWidth, children }) {
-  const { breakpoints } = useContext(ContextTheme);
+  const { breakpoints } = useContext(ThemeContext);
   return (
     <>
       <div

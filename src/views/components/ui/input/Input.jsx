@@ -2,7 +2,7 @@
 
 import useInlineStyle from "@/hooks/useInlineStyles";
 import { useContext, useRef } from "react";
-import { ContextTheme } from "@/contexts/ThemeProvider";
+import { ThemeContext } from "@/contexts/ThemeProvider";
 export default function Input({
   placeholder,
   register = () => null, //register e name sao utilizados para controlar o input com o useForm
@@ -13,7 +13,7 @@ export default function Input({
   error,
   labelText,
 }) {
-  const { fontSizes, colors } = useContext(ContextTheme);
+  const { fontSizes, colors } = useContext(ThemeContext);
   const style = useInlineStyle(sp);
   const inputRef = useRef(null);
   return (

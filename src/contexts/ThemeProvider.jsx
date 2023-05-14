@@ -52,12 +52,12 @@ const shadows = deepFreeze({
 
 const border = deepFreeze({});
 
-export const ContextTheme = createContext();
+export const ThemeContext = createContext();
 
 export default function ThemeProvider({ children }) {
   return (
-    <ContextTheme.Provider value={{ colors, fontSizes, shadows, breakpoints }}>
+    <ThemeContext.Provider value={{ colors, fontSizes, shadows, breakpoints }}>
       {children}
-    </ContextTheme.Provider>
+    </ThemeContext.Provider>
   );
 }

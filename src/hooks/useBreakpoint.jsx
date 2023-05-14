@@ -1,4 +1,4 @@
-import { ContextTheme } from "@/contexts/ThemeProvider";
+import { ThemeContext } from "@/contexts/ThemeProvider";
 import  getDeviceSize  from "@/utils/getDeviceSize.js";
 import { useContext, useEffect, useState } from "react";
 
@@ -6,7 +6,7 @@ export default function useBreakpoint() {
   // Initialize state with undefined width/height so server and client renders match
   // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
   const [currentBreakpoint, setCurrentBreakpoint] = useState(null);
-  const { breakpoints } = useContext(ContextTheme);
+  const { breakpoints } = useContext(ThemeContext);
 
   useEffect(() => {
     // only execute all the code below in client side

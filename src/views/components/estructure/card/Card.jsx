@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import { ContextTheme } from "@/contexts/ThemeProvider";
+import { ThemeContext } from "@/contexts/ThemeProvider";
 import useInlineStyle from "@/hooks/useInlineStyles";
 import { jsx } from "@emotion/react";
 import React, { useContext } from "react";

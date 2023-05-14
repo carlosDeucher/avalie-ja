@@ -1,4 +1,4 @@
-import { ContextTheme } from "@/contexts/ThemeProvider";
+import { ThemeContext } from "@/contexts/ThemeProvider";
 import { ViewLoginContext } from "../../..";
 import Input from "@/views/components/ui/input/Input";
 import Box from "@/views/components/estructure/box/Box";
@@ -13,7 +13,7 @@ import ButtonText from "@/views/components/ui/buttons/ButtonText";
 
 export default function ConfirmEmailForm() {
   const { setStep } = useContext(ViewLoginContext);
-  const { colors: colorsTheme } = useContext(ContextTheme);
+  const { colors: colorsTheme } = useContext(ThemeContext);
   const { confirmUserEmail } = useContext(ApiLoginContext);
   const { push } = useRouter();
   const [isInputEmpty, setIsInputEmpty] = useState(true);
