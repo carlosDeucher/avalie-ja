@@ -17,7 +17,7 @@ export default function Input({
   const style = useInlineStyle(sp);
   const inputRef = useRef(null);
   return (
-    <>
+    <div css={{ ...style }}>
       <label
         css={{
           fontSize: fontSizes["small"],
@@ -42,7 +42,7 @@ export default function Input({
               : `0 0 0 0.125em ${colors.secondary.main}`,
           },
           outline: "none",
-          ...style,
+          flex: 1,
         }}
       >
         <input
@@ -63,6 +63,6 @@ export default function Input({
           }}
         ></input>
       </div>
-    </>
+    </div>
   );
 }
