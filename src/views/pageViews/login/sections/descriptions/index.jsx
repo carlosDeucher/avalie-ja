@@ -15,9 +15,10 @@ export default function Descriptions() {
     useContext(ThemeContext);
   const { step } = useContext(ViewLoginContext);
   const { query } = useRouter();
-  
+
   return (
     <Box
+      component="section"
       sp={{
         maxWidth: ["100%", "255px", "300px"],
         width: "100%",

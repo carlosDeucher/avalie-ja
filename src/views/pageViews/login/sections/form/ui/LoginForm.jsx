@@ -23,11 +23,12 @@ export default function LoginForm() {
     e.preventDefault();
     const password = e.target[0].value;
     const data = await loginUser({ password, idUser: query.userId });
-    console.log(data)
+    console.log(data);
     if (data) {
       if (data.status === "success") {
-        console.log("logado")
-      } else if (data.type === "INVALID_CREDENCIALS") setIsInvalidPassword(true);
+        console.log("logado");
+      } else if (data.type === "INVALID_CREDENCIALS")
+        setIsInvalidPassword(true);
     }
   };
 
@@ -40,51 +41,56 @@ export default function LoginForm() {
 
   return (
     <Box component="form" onSubmit={handleSubmit}>
-      <Input
-        sp={{ flex: 1 }}
-        name="textinput"
-        labelText={"Senha"}
-        error={isInvalidPassword}
-        onChange={(e) => {
-          setIsInvalidPassword(false);
-          setIsInputEmpty(!e.target.value.length);
-        }}
-      />
-      <Stack
-        alignItems={"center"}
-        columnGap={"4px"}
-        sp={{
-          marginTop: "3px",
-          opacity: isInvalidPassword ? 1 : 0,
-          marginLeft: "2px",
-        }}
-      >
-        <IoMdAlert color={colorsTheme.error.main} />
-        <Text fontSize="small" color={colorsTheme.error.main} fontWeight={500}>
-          Senha inválida.
-        </Text>
-      </Stack>
-
-      <Stack
-        columnGap={"20px"}
-        rowGap={"0.5rem"}
-        sp={{
-          marginTop: "15px",
-          flexDirection: ["column", "row", "row"],
-        }}
-      >
-        <ButtonContained type="submit" disabled={isInputEmpty}>
-          Iniciar sessão
-        </ButtonContained>
-        <ButtonText
-          onClick={() => {
-            setStep("confirmEmail");
-            push("/login");
+      <Box component="section">
+        <Input
+          name="textinput"
+          labelText={"Senha"}
+          error={isInvalidPassword}
+          onChange={(e) => {
+            setIsInvalidPassword(false);
+            setIsInputEmpty(!e.target.value.length);
+          }}
+        />
+        <Stack
+          alignItems={"center"}
+          columnGap={"4px"}
+          sp={{
+            marginTop: "3px",
+            opacity: isInvalidPassword ? 1 : 0,
+            marginLeft: "2px",
           }}
         >
-          Alterar conta{" "}
-        </ButtonText>
-      </Stack>
+          <IoMdAlert color={colorsTheme.error.main} />
+          <Text
+            fontSize="small"
+            color={colorsTheme.error.main}
+            fontWeight={500}
+          >
+            Senha inválida.
+          </Text>
+        </Stack>
+
+        <Stack
+          columnGap={"20px"}
+          rowGap={"0.5rem"}
+          sp={{
+            marginTop: "15px",
+            flexDirection: ["column", "row", "row"],
+          }}
+        >
+          <ButtonContained type="submit" disabled={isInputEmpty}>
+            Iniciar sessão
+          </ButtonContained>
+          <ButtonText
+            onClick={() => {
+              setStep("confirmEmail");
+              push("/login");
+            }}
+          >
+            Alterar conta{" "}
+          </ButtonText>
+        </Stack>
+      </Box>
     </Box>
   );
 }

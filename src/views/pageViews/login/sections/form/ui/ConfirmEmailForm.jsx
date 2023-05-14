@@ -36,46 +36,51 @@ export default function ConfirmEmailForm() {
 
   return (
     <Box component="form" onSubmit={handleSubmit}>
-      <Input
-        sp={{ flex: 1 }}
-        name="textinput"
-        labelText={"Digite o seu email"}
-        error={isUserNotFound}
-        onChange={(e) => {
-          setIsUserNotfound(false);
-          setIsInputEmpty(!e.target.value.length);
-        }}
-      />
-      <Stack
-        alignItems={"center"}
-        columnGap={"4px"}
-        sp={{
-          marginTop: "3px",
-          opacity: isUserNotFound ? 1 : 0,
-          marginLeft: "2px",
-        }}
-      >
-        <IoMdAlert color={colorsTheme.error.main} />
-        <Text fontSize="small" color={colorsTheme.error.main} fontWeight={500}>
-          Revise o seu e-mail.
-        </Text>
-      </Stack>
+      <Box component="section">
+        <Input
+          name="textinput"
+          labelText={"Digite o seu email"}
+          error={isUserNotFound}
+          onChange={(e) => {
+            setIsUserNotfound(false);
+            setIsInputEmpty(!e.target.value.length);
+          }}
+        />
+        <Stack
+          alignItems={"center"}
+          columnGap={"4px"}
+          sp={{
+            marginTop: "3px",
+            opacity: isUserNotFound ? 1 : 0,
+            marginLeft: "2px",
+          }}
+        >
+          <IoMdAlert color={colorsTheme.error.main} />
+          <Text
+            fontSize="small"
+            color={colorsTheme.error.main}
+            fontWeight={500}
+          >
+            Revise o seu e-mail.
+          </Text>
+        </Stack>
 
-      <Stack
-        columnGap={"20px"}
-        rowGap={"0.5rem"}
-        sp={{
-          marginTop: "15px",
-          flexDirection: ["column", "row", "row"],
-        }}
-      >
-        <ButtonContained type="submit" disabled={isInputEmpty}>
-          Continuar
-        </ButtonContained>
-        <Link href="/user_register">
-          <ButtonText>Criar conta</ButtonText>
-        </Link>
-      </Stack>
+        <Stack
+          columnGap={"20px"}
+          rowGap={"0.5rem"}
+          sp={{
+            marginTop: "15px",
+            flexDirection: ["column", "row", "row"],
+          }}
+        >
+          <ButtonContained type="submit" disabled={isInputEmpty}>
+            Continuar
+          </ButtonContained>
+          <Link href="/user_register">
+            <ButtonText>Criar conta</ButtonText>
+          </Link>
+        </Stack>
+      </Box>
     </Box>
   );
 }
