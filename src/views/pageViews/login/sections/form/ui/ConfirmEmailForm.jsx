@@ -10,7 +10,7 @@ import { ApiLoginContext } from "@/pages/login";
 import { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import ButtonText from "@/views/components/ui/buttons/ButtonText";
-import Link from "next/link";
+import LinkNext from "@/views/components/estructure/link/LinkNext";
 
 export default function ConfirmEmailForm() {
   const { setStep } = useContext(ViewLoginContext);
@@ -76,9 +76,9 @@ export default function ConfirmEmailForm() {
           <ButtonContained type="submit" disabled={isInputEmpty}>
             Continuar
           </ButtonContained>
-          <Link href="/user_register">
+          <LinkNext href="/user_register" sp={{ display: "flex",flexDirection:["column","row"] }}>
             <ButtonText>Criar conta</ButtonText>
-          </Link>
+          </LinkNext>
         </Stack>
       </Box>
     </Box>
