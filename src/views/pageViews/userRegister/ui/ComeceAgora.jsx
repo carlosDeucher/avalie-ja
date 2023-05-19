@@ -4,7 +4,13 @@ import React from "react";
 
 export default function ComeceAgora() {
   return (
-    <Box sp={{ width: "335px", marginTop: "72px" }}>
+    <Box
+      sp={{
+        width: "335px",
+        marginTop: "72px",
+        display: ["none", "none", "block"],
+      }}
+    >
       <Box
         sp={{
           width: "150px",

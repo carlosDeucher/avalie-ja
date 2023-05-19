@@ -7,64 +7,142 @@ import ButtonContained from "@/views/components/ui/buttons/ButtonContained";
 import ButtonText from "@/views/components/ui/buttons/ButtonText";
 import CheckBox from "@/views/components/ui/checkbox";
 import Input from "@/views/components/ui/input/Input";
-import Link from "next/link";
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import ComeceAgora from "./ui/ComeceAgora";
+import LinkNext from "@/views/components/estructure/link/LinkNext";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { ApiUserRegisterContext } from "@/pages/user_register";
+
+const schema = yup.object({
+  email: yup
+    .string()
+    .required("Informe o e-mail.")
+    .email("Informe um e-mail válido."),
+  password: yup.string().required("Informe a senha."),
+  confirm_password: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "As senhas não coincidem"),
+  username: yup.string().required("Informe o nome de usuário."),
+});
 
 export default function UserRegisterView() {
-  const { register } = useForm();
+  const {
+    register,
+    formState: { errors },
+    setError,
+    handleSubmit,
+  } = useForm({ resolver: yupResolver(schema) });
+
+  const { createUser } = useContext(ApiUserRegisterContext);
+  const [isPasswordDisplayed, setIsPasswordDisplayed] = useState(false);
+
+  const onSubmit = async (form) => {
+    const data = await createUser(form);
+    if (data?.status === "success") {
+      console.log("usuario criado");
+    } else if (data?.type === "USED_EMAIL") {
+      setError("email", { message: "Já existe uma conta com este e-mail." });
+    }
+  };
+
   return (
     <Container maxWidth={"laptop"}>
-      <Card sp={{ marginTop: "20px", padding: "40px" }}>
+      <Card
+        sp={{
+          margin: "0 auto",
+          marginTop: [0, "120px"],
+          padding: "40px",
+          width: ["100%", "fit-content"],
+          height: ["100vh", "auto"],
+        }}
+      >
         <Stack>
-          <Box>
-            <Text component="h1">Criar sua Conta do Avalie Ja</Text>
+          <Box sp={{ flex: 1 }}>
+            <Text
+              component="h1"
+              sp={(theme) => ({ fontSize: theme.fontSizes.xmedium })}
+            >
+              Criar sua Conta do Avalie Ja
+            </Text>
             {/* <Text component="h1">Criar sua Conta do Avalie Ja</Text> */}
-            <Box component="form" sp={{ marginTop: "24px" }}>
+            <Box
+              component="form"
+              onSubmit={handleSubmit(onSubmit)}
+              id="register-form"
+              sp={{ marginTop: "18px" }}
+            >
               <Box component="section">
                 <Input
                   labelText={"Username"}
-                  name={"username"}
-                  register={register}
+                  register={register("username")}
+                  error={errors.username?.message}
                   placeholder={"Esse será o nome visto por outros usuários"}
+                  autocomplete="nickname"
                 ></Input>
                 <Input
                   labelText={"E-mail"}
-                  name={"email"}
-                  register={register}
+                  register={register("email")}
+                  error={errors.email?.message}
                   placeholder={"Digite o seu e-mail"}
-                  sp={{ marginTop: "24px" }}
+                  autocomplete="email"
+                  sp={{ marginTop: "18px" }}
                 ></Input>
-                <Stack columnGap={"15px"}>
+                <Stack
+                  columnGap={"15px"}
+                  sp={{ flexDirection: ["column", "row"] }}
+                >
                   <Input
                     labelText={"Senha"}
-                    name={"password"}
-                    register={register}
+                    register={register("password")}
+                    autocomplete="new-password"
                     placeholder={"Digite a sua senha"}
-                    type={"password"}
-                    sp={{ flex: 1, marginTop: "24px" }}
+                    error={errors.password?.message}
+                    type={isPasswordDisplayed ? "text" : "password"}
+                    sp={{ flex: 1, marginTop: "18px" }}
                   ></Input>
                   <Input
                     labelText={"Confirmar senha"}
-                    name={"confirm_password"}
-                    register={register}
+                    register={register("confirm_password")}
+                    autocomplete="off"
+                    error={errors.confirm_password?.message}
                     placeholder={"Confirme a sua senhas"}
-                    type={"password"}
-                    sp={{ flex: 1, marginTop: "24px" }}
+                    type={isPasswordDisplayed ? "text" : "password"}
+                    sp={{ flex: 1, marginTop: "18px" }}
                   ></Input>
                 </Stack>
-                <CheckBox />
+                <CheckBox
+                  sp={{ marginTop: "10px" }}
+                  labelText="Mostrar senha"
+                  value={isPasswordDisplayed}
+                  onClick={() =>
+                    setIsPasswordDisplayed((oldValue) => !oldValue)
+                  }
+                />
               </Box>
             </Box>
             <Stack
-              justifyContext="space-between"
-              sp={{ width: "100%", marginBottom: "24px", marginTop: "40px" }}
+              justifyContent="center"
+              columnGap={"10px"}
+              rowGap={"10px"}
+              sp={{
+                width: "100%",
+                marginBottom: "24px",
+                marginTop: "40px",
+                flexDirection: ["column-reverse", "row"],
+              }}
             >
-              <Link href="/login">
-                <ButtonText>Faça login em vez disso</ButtonText>
-              </Link>
-              <ButtonContained type="submit">Finalizar</ButtonContained>
+              <LinkNext href="/login" style={{ display: "flex", flex: 1 }}>
+                <ButtonText
+                  sp={{ minWidth: "max-content", width: ["100%", "auto"] }}
+                >
+                  Faça login em vez disso
+                </ButtonText>
+              </LinkNext>
+              <ButtonContained type="submit" form="register-form">
+                Finalizar
+              </ButtonContained>
             </Stack>
           </Box>
           <ComeceAgora />
