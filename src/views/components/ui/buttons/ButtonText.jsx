@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import useInlineStyle from "@/hooks/useInlineStyles";
-import React from "react";
+import { jsx } from "@emotion/react";
 
 const defaultButtonStyle = (theme) => ({
   padding: "10px 15px",
@@ -18,16 +18,23 @@ const disabledStyle = {
   cursor: "default",
 };
 
-export default function ButtonText({ disabled, sp, type, onClick, children }) {
-  const style = useInlineStyle(defaultButtonStyle);
+export default function ButtonText(props) {
+  const { component, sp, disabled } = props;
+  const defaultStyle = useInlineStyle(defaultButtonStyle);
+  const spStyle = useInlineStyle(sp);
   const currentDisabledStyle = disabled ? disabledStyle : {};
-  return (
-    <button
-      onClick={onClick}
-      type={type}
-      css={{ ...style, ...currentDisabledStyle, ...sp }}
-    >
-      {children}
-    </button>
-  );
+
+  const commonProps = { ...props };
+  delete commonProps.sp;
+  delete commonProps.component;
+  delete commonProps.disabled;
+
+  return jsx(component || "button", {
+    css: {
+      ...defaultStyle,
+      ...currentDisabledStyle,
+      ...spStyle,
+    },
+    ...commonProps,
+  });
 }

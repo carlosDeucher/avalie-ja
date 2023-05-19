@@ -16,7 +16,7 @@ const defaultButtonStyle = (theme, { disabled }) => ({
   borderRadius: "0.3em",
   transition: !disabled && "background-color 350ms",
   fontWeight: "600",
-  height: "48px",
+  height: "43px",
 });
 
 const disabledStyle = (theme) => ({
@@ -31,9 +31,9 @@ const disabledStyle = (theme) => ({
 
 export default function ButtonContained(props) {
   const { sp, component, disabled } = props;
-  const style = useInlineStyle(defaultButtonStyle, { disabled });
+  const defaultStyle = useInlineStyle(defaultButtonStyle, { disabled });
   const currentDisabledStyle = useInlineStyle(disabled && disabledStyle);
-  const styleProps = useInlineStyle(sp);
+  const spStyle = useInlineStyle(sp);
 
   const commonProps = { ...props };
   delete commonProps.sp;
@@ -42,22 +42,10 @@ export default function ButtonContained(props) {
 
   return jsx(component || "button", {
     css: {
-      ...style,
+      ...defaultStyle,
       ...currentDisabledStyle,
-      ...styleProps,
+      ...spStyle,
     },
     ...commonProps,
   });
-
-  return (
-    <button
-      css={{
-        ...style,
-        ...currentDisabledStyle,
-        ...styleProps,
-      }}
-    >
-      {children}
-    </button>
-  );
 }
