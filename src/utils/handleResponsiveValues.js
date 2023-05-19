@@ -1,7 +1,5 @@
 import isObject from "./isObject";
 
-
-
 export default function handleResponsiveValues(
   styleWithoutResponsiveValues,
   breakpoint
@@ -25,7 +23,7 @@ export default function handleResponsiveValues(
   }
   function convertResponsiveValues(value) {
     if (Array.isArray(value)) {
-      const cssArray = value;
+      const cssArray = value.map((value) => String(value));
       switch (breakpoint) {
         case "mobile":
           value = cssArray[0];
