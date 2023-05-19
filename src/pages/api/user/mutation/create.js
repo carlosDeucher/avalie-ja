@@ -10,19 +10,19 @@ export default async function handler(req, res) {
       },
     });
     if (searchEmail) {
-      res.status(400).json({ type: "USED_EMAIL", status: "error" });
+      res.status(200).json({ type: "USED_EMAIL", status: "error" });
     } else {
       await Users.create({
         username: req.body.username,
         email: req.body.email,
-        password: req.body.passwords,
+        password: req.body.password,
       });
       res.json({
         type: "USER_CREATED",
         status: "success",
       });
     }
-  } catch {
+  } catch (e){
     res.status(500).json({ status: "error", type: "UNKNOWN_ERROR" });
   }
 }
