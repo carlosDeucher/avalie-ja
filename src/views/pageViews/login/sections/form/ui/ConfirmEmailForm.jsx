@@ -3,8 +3,6 @@ import { ViewLoginContext } from "../../..";
 import Input from "@/views/components/ui/input/Input";
 import Box from "@/views/components/estructure/box/Box";
 import Stack from "@/views/components/estructure/stack/Stack";
-import { IoMdAlert } from "react-icons/Io";
-import Text from "@/views/components/estructure/text/Text";
 import ButtonContained from "@/views/components/ui/buttons/ButtonContained";
 import { ApiLoginContext } from "@/pages/login";
 import { useContext, useState } from "react";
@@ -14,7 +12,6 @@ import LinkNext from "@/views/components/estructure/link/LinkNext";
 
 export default function ConfirmEmailForm() {
   const { setStep } = useContext(ViewLoginContext);
-  const { colors: colorsTheme } = useContext(ThemeContext);
   const { confirmUserEmail } = useContext(ApiLoginContext);
   const { push } = useRouter();
   const [isInputEmpty, setIsInputEmpty] = useState(true);
@@ -40,30 +37,13 @@ export default function ConfirmEmailForm() {
         <Input
           name="textinput"
           labelText={"Digite o seu email"}
-          error={isUserNotFound}
+          autocomplete="email"
+          error={isUserNotFound && "Revise o seu e-mail."}
           onChange={(e) => {
             setIsUserNotfound(false);
             setIsInputEmpty(!e.target.value.length);
           }}
         />
-        <Stack
-          alignItems={"center"}
-          columnGap={"4px"}
-          sp={{
-            marginTop: "3px",
-            opacity: isUserNotFound ? 1 : 0,
-            marginLeft: "2px",
-          }}
-        >
-          <IoMdAlert color={colorsTheme.error.main} />
-          <Text
-            fontSize="small"
-            color={colorsTheme.error.main}
-            fontWeight={500}
-          >
-            Revise o seu e-mail.
-          </Text>
-        </Stack>
 
         <Stack
           columnGap={"20px"}
@@ -76,7 +56,10 @@ export default function ConfirmEmailForm() {
           <ButtonContained type="submit" disabled={isInputEmpty}>
             Continuar
           </ButtonContained>
-          <LinkNext href="/user_register" sp={{ display: "flex",flexDirection:["column","row"] }}>
+          <LinkNext
+            href="/user_register"
+            sp={{ display: "flex", flexDirection: ["column", "row"] }}
+          >
             <ButtonText>Criar conta</ButtonText>
           </LinkNext>
         </Stack>

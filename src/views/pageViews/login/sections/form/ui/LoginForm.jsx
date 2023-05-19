@@ -45,30 +45,13 @@ export default function LoginForm() {
         <Input
           name="textinput"
           labelText={"Senha"}
-          error={isInvalidPassword}
+          autocomplete="current-password"
+          error={isInvalidPassword && "Senha inválida."}
           onChange={(e) => {
             setIsInvalidPassword(false);
             setIsInputEmpty(!e.target.value.length);
           }}
         />
-        <Stack
-          alignItems={"center"}
-          columnGap={"4px"}
-          sp={{
-            marginTop: "3px",
-            opacity: isInvalidPassword ? 1 : 0,
-            marginLeft: "2px",
-          }}
-        >
-          <IoMdAlert color={colorsTheme.error.main} />
-          <Text
-            fontSize="small"
-            color={colorsTheme.error.main}
-            fontWeight={500}
-          >
-            Senha inválida.
-          </Text>
-        </Stack>
 
         <Stack
           columnGap={"20px"}
