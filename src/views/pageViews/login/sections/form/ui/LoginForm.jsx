@@ -1,19 +1,16 @@
-import { ThemeContext } from "@/contexts/ThemeProvider";
 import { ViewLoginContext } from "../../..";
 import Input from "@/views/components/ui/input/Input";
 import Box from "@/views/components/estructure/box/Box";
 import Stack from "@/views/components/estructure/stack/Stack";
-import { IoMdAlert } from "react-icons/Io";
-import Text from "@/views/components/estructure/text/Text";
 import ButtonContained from "@/views/components/ui/buttons/ButtonContained";
 import { ApiLoginContext } from "@/pages/login";
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import ButtonText from "@/views/components/ui/buttons/ButtonText";
+import LinkNext from "@/views/components/estructure/link/LinkNext";
 
 export default function LoginForm() {
   const { setStep } = useContext(ViewLoginContext);
-  const { colors: colorsTheme } = useContext(ThemeContext);
   const { loginUser } = useContext(ApiLoginContext);
   const { push, query, isReady } = useRouter();
   const [isInputEmpty, setIsInputEmpty] = useState(true);
@@ -40,12 +37,12 @@ export default function LoginForm() {
   }, []);
 
   return (
-    <Box component="form" onSubmit={handleSubmit}>
+    <Box component="form" onSubmit={handleSubmit} sp={{ position: "relative" }}>
       <Box component="section">
         <Input
           name="textinput"
           labelText={"Senha"}
-          autocomplete="current-password"
+          autoComplete="current-password"
           error={isInvalidPassword && "Senha inválida."}
           onChange={(e) => {
             setIsInvalidPassword(false);
@@ -64,14 +61,14 @@ export default function LoginForm() {
           <ButtonContained type="submit" disabled={isInputEmpty}>
             Iniciar sessão
           </ButtonContained>
-          <ButtonText
-            onClick={() => {
-              setStep("confirmEmail");
-              push("/login");
-            }}
+          <LinkNext
+            href="/login"
+            sp={{ display: "flex", flexDirection: ["column", "row"] }}
           >
-            Alterar conta{" "}
-          </ButtonText>
+            <ButtonText onClick={() => setStep("confirmEmail")}>
+              Alterar conta{" "}
+            </ButtonText>
+          </LinkNext>
         </Stack>
       </Box>
     </Box>

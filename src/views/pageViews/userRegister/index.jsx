@@ -66,7 +66,6 @@ export default function UserRegisterView() {
             >
               Criar sua Conta do Avalie Ja
             </Text>
-            {/* <Text component="h1">Criar sua Conta do Avalie Ja</Text> */}
             <Box
               component="form"
               onSubmit={handleSubmit(onSubmit)}
@@ -79,14 +78,14 @@ export default function UserRegisterView() {
                   register={register("username")}
                   error={errors.username?.message}
                   placeholder={"Esse será o nome visto por outros usuários"}
-                  autocomplete="nickname"
+                  autoComplete="nickname"
                 ></Input>
                 <Input
                   labelText={"E-mail"}
                   register={register("email")}
                   error={errors.email?.message}
                   placeholder={"Digite o seu e-mail"}
-                  autocomplete="email"
+                  autoComplete="email"
                   sp={{ marginTop: "18px" }}
                 ></Input>
                 <Stack
@@ -96,7 +95,7 @@ export default function UserRegisterView() {
                   <Input
                     labelText={"Senha"}
                     register={register("password")}
-                    autocomplete="new-password"
+                    autoComplete="new-password"
                     placeholder={"Digite a sua senha"}
                     error={errors.password?.message}
                     type={isPasswordDisplayed ? "text" : "password"}
@@ -105,7 +104,7 @@ export default function UserRegisterView() {
                   <Input
                     labelText={"Confirmar senha"}
                     register={register("confirm_password")}
-                    autocomplete="off"
+                    autoComplete="off"
                     error={errors.confirm_password?.message}
                     placeholder={"Confirme a sua senhas"}
                     type={isPasswordDisplayed ? "text" : "password"}

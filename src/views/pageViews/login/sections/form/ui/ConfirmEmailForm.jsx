@@ -5,13 +5,12 @@ import Box from "@/views/components/estructure/box/Box";
 import Stack from "@/views/components/estructure/stack/Stack";
 import ButtonContained from "@/views/components/ui/buttons/ButtonContained";
 import { ApiLoginContext } from "@/pages/login";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import ButtonText from "@/views/components/ui/buttons/ButtonText";
 import LinkNext from "@/views/components/estructure/link/LinkNext";
 
 export default function ConfirmEmailForm() {
-  const { setStep } = useContext(ViewLoginContext);
   const { confirmUserEmail } = useContext(ApiLoginContext);
   const { push } = useRouter();
   const [isInputEmpty, setIsInputEmpty] = useState(true);
@@ -22,7 +21,6 @@ export default function ConfirmEmailForm() {
     const email = e.target[0].value;
     const data = await confirmUserEmail(email);
     if (data.status === "success") {
-      setStep("login");
       push(
         `/login?step=login&username=${encodeURI(data.data.username)}&userId=${
           data.data.id
@@ -37,7 +35,7 @@ export default function ConfirmEmailForm() {
         <Input
           name="textinput"
           labelText={"Digite o seu email"}
-          autocomplete="email"
+          autoComplete="email"
           error={isUserNotFound && "Revise o seu e-mail."}
           onChange={(e) => {
             setIsUserNotfound(false);
