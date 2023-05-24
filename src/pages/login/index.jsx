@@ -1,3 +1,4 @@
+import Snackbar from "@/views/components/estructure/alert/Snackbar";
 import Loading from "@/views/components/ui/loading/Loading";
 import LoginView from "@/views/pageViews/login";
 import axios from "axios";
@@ -6,6 +7,8 @@ import { createContext, useState } from "react";
 export const ApiLoginContext = createContext();
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+
   const confirmUserEmail = async (email) => {
     setIsLoading(true);
     try {
@@ -13,11 +16,10 @@ export default function Login() {
         email,
       });
       setIsLoading(false);
-      if (data.status !== "success") {
-      }
       return data;
     } catch (e) {
       console.log(e);
+      setErrorMessage("Falha ao buscar usuário.");
       setIsLoading(false);
       return null;
     }
@@ -31,11 +33,10 @@ export default function Login() {
         credencials //senha e idUser
       );
       setIsLoading(false);
-      if (data.status !== "success") {
-      }
       return data;
-    } catch (e){
+    } catch (e) {
       console.log(e);
+      setErrorMessage("Falha ao logar usuário.");
       setIsLoading(false);
       return null;
     }
@@ -43,6 +44,9 @@ export default function Login() {
   return (
     <>
       <Loading isOpen={isLoading} />
+      <Snackbar isOpen={errorMessage} onClose={() => setErrorMessage(null)}>
+        {errorMessage}
+      </Snackbar>
       <ApiLoginContext.Provider value={{ confirmUserEmail, loginUser }}>
         <LoginView />
       </ApiLoginContext.Provider>
