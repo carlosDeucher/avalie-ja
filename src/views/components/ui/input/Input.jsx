@@ -60,7 +60,7 @@ export default function Input(props) {
               fontSize: fontSizes["medium"],
               lineHeight: "1.5rem",
               flexGrow: 1,
-              backgroundColor: colors.white,
+              backgroundColor: colors.white.main,
             }}
             id="input"
           ></input>

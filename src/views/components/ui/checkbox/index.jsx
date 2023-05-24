@@ -58,7 +58,7 @@ export default function CheckBox(props) {
         >
           <BsCheckLg
             style={{
-              color: colorsTheme.white,
+              color: colorsTheme.white.main,
               position: "absolute",
               left: 0,
               right: 0,

@@ -57,7 +57,7 @@ export default function Descriptions() {
               display: "inline-block",
               width: "100%",
               "&:hover": {
-                backgroundColor: colorsTheme.grey[1],
+                backgroundColor: colorsTheme.grey[2],
               },
             }}
             component="a"
@@ -82,7 +82,7 @@ export default function Descriptions() {
                   Linkedin
                 </Text>
               </Stack>
-              <MdArrowForwardIos style={{ color: colorsTheme.grey[6] }} />
+              <MdArrowForwardIos style={{ color: colorsTheme.grey[7] }} />
             </Stack>
           </Box>
           <Divider />
@@ -92,7 +92,7 @@ export default function Descriptions() {
               display: "inline-block",
               width: "100%",
               "&:hover": {
-                backgroundColor: colorsTheme.grey[1],
+                backgroundColor: colorsTheme.grey[2],
               },
             }}
             component="a"

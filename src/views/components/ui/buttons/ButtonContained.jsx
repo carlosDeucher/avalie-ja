@@ -11,7 +11,7 @@ const defaultButtonStyle = (theme, { disabled }) => ({
     backgroundColor: theme.colors["secondary"].hover,
   },
   backgroundColor: theme.colors["secondary"].main,
-  color: theme.colors["light"],
+  color: theme.colors["white"].main,
   fontSize: theme.fontSizes.medium,
   borderRadius: "0.3em",
   transition: !disabled && "background-color 350ms",

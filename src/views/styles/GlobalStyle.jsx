@@ -15,7 +15,7 @@ export default function GlobalStyle() {
         }
 
         body {
-          background-color: ${themeProvider.colors.possibleBackground[1]};
+          background-color: ${themeProvider.colors.background.main};
           line-height: 1;
         }
         html,
