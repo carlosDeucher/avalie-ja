@@ -1,14 +1,61 @@
 import deepFreeze from "@/utils/deepFreeze";
-import getDeviceSize from "@/utils/getDeviceSize";
 import { createContext } from "react";
 
 const colors = deepFreeze({
-  primary: "#1a1a2e",
-  secondary: { main: "#aeb8fe", hover: "#8c96db", disabled: "#57596b" },
-  success: "#2ecc71",
-  error: { main: "#e74c3c", dark: "#d14738" },
-  warning: "#f1c40f",
-  info: "#8be9fd",
+  primary: {
+    main: "#4c8bf5",
+    hover: "#3466c2",
+    disabled: "#b0c8f8",
+    dark: "#324a80",
+  },
+  secondary: {
+    main: "#e68a00",
+    hover: "#bf6600",
+    disabled: "#ffc266",
+    dark: "#804d00",
+  },
+  success: {
+    main: "#58b368",
+    hover: "#3c894a",
+    disabled: "#a1d9af",
+    dark: "#33663e",
+  },
+  error: {
+    main: "#f04a4a",
+    hover: "#c23333",
+    disabled: "#f8a6a6",
+    dark: "#802d2d",
+  },
+  warning: {
+    main: "#f5a623",
+    hover: "#c97a1e",
+    disabled: "#f8d49c",
+    dark: "#805116",
+  },
+  info: {
+    main: "#5bcaff",
+    hover: "#3997c2",
+    disabled: "#a7d9f8",
+    dark: "#326280",
+  },
+  white: {
+    main: "#ffffff",
+    hover: "#f5f5f5",
+    disabled: "#eeeeee",
+    dark: "#bdbdbd",
+  },
+  dark: {
+    main: "#222222",
+    hover: "#444444",
+    disabled: "#777777",
+    dark: "#000000",
+  },
+  background: {
+    main: "#f5f5f5",
+    hover: "#e0e0e0",
+    disabled: "#bdbdbd",
+    dark: "#9e9e9e",
+  },
   grey: [
     "rgba(250, 250, 250, 1)",
     "rgba(244, 244, 244, 1)",
@@ -21,10 +68,6 @@ const colors = deepFreeze({
     "rgba(68, 68, 68, 1)",
     "rgba(34, 34, 34, 1)",
   ],
-  light: "#f8f9fa",
-  dark: "#000000",
-  white: "#f6f6f6",
-  possibleBackground: ["#f6f6f6", "#ebebeb", "#ffffff"],
 });
 const breakpoints = deepFreeze({
   desktop: 1050,
@@ -49,8 +92,6 @@ const shadows = deepFreeze({
   large: "0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23)",
   xlarge: "0 15px 25px rgba(0, 0, 0, 0.22), 0 5px 10px rgba(0, 0, 0, 0.15)",
 });
-
-const border = deepFreeze({});
 
 export const ThemeContext = createContext();
 
