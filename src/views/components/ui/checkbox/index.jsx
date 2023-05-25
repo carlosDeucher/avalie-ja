@@ -96,7 +96,7 @@ export default function CheckBox(props) {
           <span
             css={{
               fontSize: fontSizesTheme.medium,
-              lineHeight: "2.5rem",
+              lineHeight: "37px",
             }}
           >
             {labelText}
