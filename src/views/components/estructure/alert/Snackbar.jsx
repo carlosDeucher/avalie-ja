@@ -66,6 +66,7 @@ export default function Snackbar({
             bottom: 0,
             left: 0,
             padding: "25px 30px",
+            width: ["100%", "auto"],
             animation: `${
               isOpen ? unMountAnimation : mountAnimation
             } ${animationDelay}ms forwards`,
@@ -78,10 +79,11 @@ export default function Snackbar({
               borderRadius: "5px",
               boxShadow: theme.shadows.xlarge,
               backgroundColor: theme.colors.error.main,
+              minWidth: ["100%", "300px"],
             })}
           >
             <Text
-              fontSize="xmedium"
+              fontSize="medium"
               fontWeight={700}
               sp={(theme) => ({ color: theme.colors.white.main })}
             >

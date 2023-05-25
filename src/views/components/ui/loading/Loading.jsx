@@ -70,7 +70,7 @@ const Circle = ({ animationOutside }) => {
         height: "40px",
         width: "40px",
         opacity: 1,
-        backgroundColor: theme.colors.primary.main,
+        backgroundColor: theme.colors.primary.dark,
         borderRadius: "50%",
         justifyContent: "center",
         alignItems: "center",
