@@ -106,7 +106,7 @@ export default function UserRegisterView() {
                     register={register("confirm_password")}
                     autoComplete="off"
                     error={errors.confirm_password?.message}
-                    placeholder={"Confirme a sua senhas"}
+                    placeholder={"Confirme a sua senha"}
                     type={isPasswordDisplayed ? "text" : "password"}
                     sp={{ flex: 1, marginTop: "18px" }}
                   ></Input>
