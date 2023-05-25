@@ -20,13 +20,13 @@ export default function ConfirmEmailForm() {
     e.preventDefault();
     const email = e.target[0].value;
     const data = await confirmUserEmail(email);
-    if (data.status === "success") {
+    if (data?.status === "success") {
       push(
         `/login?step=login&username=${encodeURI(data.data.username)}&userId=${
           data.data.id
         }`
       );
-    } else if (data.type === "USER_NOT_FOUND") setIsUserNotfound(true);
+    } else if (data?.type === "USER_NOT_FOUND") setIsUserNotfound(true);
   };
 
   return (
@@ -44,7 +44,7 @@ export default function ConfirmEmailForm() {
         />
 
         <Stack
-          columnGap={"20px"}
+          columnGap={"35px"}
           rowGap={"0.5rem"}
           sp={{
             marginTop: "15px",
