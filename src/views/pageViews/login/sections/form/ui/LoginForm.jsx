@@ -20,7 +20,6 @@ export default function LoginForm() {
     e.preventDefault();
     const password = e.target[0].value;
     const data = await loginUser({ password, idUser: query.userId });
-    console.log(data);
     if (data) {
       if (data.status === "success") {
         console.log("logado");
@@ -51,7 +50,7 @@ export default function LoginForm() {
         />
 
         <Stack
-          columnGap={"20px"}
+          columnGap={"35px"}
           rowGap={"0.5rem"}
           sp={{
             marginTop: "15px",
