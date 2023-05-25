@@ -8,6 +8,7 @@ export default function GlobalStyle() {
     <Global
       styles={css`
         html {
+          font-family: 'Roboto', sans-serif;
           font-size: 14px;
           @media (min-width: ${themeProvider.breakpoints.tablet}px) {
             font-size: 16px;
