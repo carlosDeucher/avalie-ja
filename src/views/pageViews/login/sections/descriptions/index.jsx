@@ -26,7 +26,7 @@ export default function Descriptions() {
       }}
     >
       {step === "confirmEmail" && (
-        <Text fontSize={"large"} fontWeight={600}>
+        <Text fontSize={"xlarge"} fontWeight={600}>
           Digite o seu{" "}
           <Text component={"span"} sp={{ whiteSpace: "nowrap" }}>
             e-mail
@@ -35,7 +35,7 @@ export default function Descriptions() {
         </Text>
       )}
       {step === "login" && (
-        <Text fontSize={"large"} fontWeight={600}>
+        <Text fontSize={"xlarge"} fontWeight={600}>
           Olá,{" "}
           <Text component={"span"} sp={{ whiteSpace: "nowrap" }}>
             {decodeURI(query.username)}!

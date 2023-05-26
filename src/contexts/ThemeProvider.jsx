@@ -80,9 +80,9 @@ const fontSizes = deepFreeze({
   xsmall: "0.75rem",
   small: "0.875rem",
   medium: "1rem",
-  xmedium: "1.375rem",
-  large: "2rem",
-  xlarge: "2.25rem",
+  xmedium: "1.15rem",
+  large: "1.375rem",
+  xlarge: "2rem",
 });
 
 const shadows = deepFreeze({
