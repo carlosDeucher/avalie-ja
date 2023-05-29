@@ -13,8 +13,8 @@ export default function Container({ maxWidth, children, sp }) {
       <Box
         sp={{
           maxWidth: breakpoints[maxWidth],
-          margin: "auto",
-          padding: [0, "15px 20px"],
+          margin: "0 auto",
+          padding: ["15px 25px", "15px 35px"],
           ...styleProps,
         }}
       >

@@ -48,7 +48,7 @@ export default function UserRegisterView() {
   };
 
   return (
-    <Container maxWidth={"laptop"}>
+    <Container sp={{ padding:0 }} maxWidth={"laptop"}>
       <Card
         sp={{
           margin: "0 auto",
@@ -62,7 +62,7 @@ export default function UserRegisterView() {
           <Box sp={{ flex: 1 }}>
             <Text
               component="h1"
-              sp={(theme) => ({ fontSize: theme.fontSizes.xmedium })}
+              sp={(theme) => ({ fontSize: theme.fontSizes.large })}
             >
               Criar sua Conta do Avalie Ja
             </Text>
