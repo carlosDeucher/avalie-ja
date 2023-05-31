@@ -1,8 +1,8 @@
 import { ThemeContext } from "@/contexts/ThemeProvider";
-import  getDeviceSize  from "@/utils/getDeviceSize.js";
+import getDeviceSize from "@/utils/getDeviceSize.js";
 import { useContext, useEffect, useState } from "react";
 
-export default function useBreakpoint() {
+export default function useBreakpoint(breakpointToValidate) {
   // Initialize state with undefined width/height so server and client renders match
   // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
   const [currentBreakpoint, setCurrentBreakpoint] = useState(null);
@@ -25,5 +25,8 @@ export default function useBreakpoint() {
     // Remove event listener on cleanup
     return () => window.removeEventListener("resize", handleResize);
   }, []); // Empty array ensures that effect is only run on mount
-  return currentBreakpoint;
+
+  return !breakpointToValidate //caso seja passado um breakpoint para validar retorna um boolean, senao retorna o breakpoint atual
+    ? currentBreakpoint
+    : currentBreakpoint === breakpointToValidate;
 }
