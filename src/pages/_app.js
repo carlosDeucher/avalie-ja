@@ -1,4 +1,6 @@
 import ThemeProvider from "@/contexts/ThemeProvider";
+import UserProvider from "@/contexts/UserContext";
+import PageWrapper from "@/views/components/ui/pageWrapper";
 import GlobalStyle from "@/views/styles/globalStyle";
 import Head from "next/head";
 export default function App({ Component, pageProps }) {
@@ -7,7 +9,11 @@ export default function App({ Component, pageProps }) {
       <Head>
         <title>Avalie Já</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="true"
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
           rel="stylesheet"
@@ -15,7 +21,11 @@ export default function App({ Component, pageProps }) {
       </Head>
       <ThemeProvider>
         <GlobalStyle />
-        <Component {...pageProps} />
+        <UserProvider>
+          <PageWrapper>
+            <Component {...pageProps} />
+          </PageWrapper>
+        </UserProvider>
       </ThemeProvider>
     </>
   );
