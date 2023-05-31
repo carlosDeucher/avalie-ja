@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Stack from "../../estructure/stack/Stack";
 import NavItem from "./ui/NavItem";
 import { BiHomeAlt2 } from "react-icons/Bi";
@@ -10,10 +10,15 @@ import useBreakpoint from "@/hooks/useBreakpoint";
 import Box from "../../estructure/box/Box";
 import { SideBarContext } from "../pageWrapper";
 import AsideSelector from "./ui/AsideSelector";
+import { UserContext } from "@/contexts/UserContext";
+import PopupLogout from "../popupLogout";
 
 export default function SideBar() {
-  const { isSidebarOpen, setisSidebarOpen } = useContext(SideBarContext);
+  const { isSidebarOpen, setIsSidebarOpen } = useContext(SideBarContext);
+  const { user } = useContext(UserContext);
   const isMobile = useBreakpoint("mobile");
+  const [isOpenPopupLogout, setIsOpenPopupLogout] = useState(false);
+
   let widthSidebar;
   if (isMobile) {
     widthSidebar = isSidebarOpen ? "250px" : 0;
@@ -21,13 +26,17 @@ export default function SideBar() {
     widthSidebar = isSidebarOpen ? "250px" : "60px";
   }
 
-  useEffect(() => setisSidebarOpen(false), [isMobile]);
+  useEffect(() => setIsSidebarOpen(false), [isMobile]);
 
   return (
     <>
+      <PopupLogout
+        isOpen={isOpenPopupLogout}
+        onClose={() => setIsOpenPopupLogout(false)}
+      />
       <Box
         onClick={(e) => {
-          if (isMobile && isSidebarOpen) setisSidebarOpen(false);
+          if (isMobile && isSidebarOpen) setIsSidebarOpen(false);
         }}
         sp={
           isMobile && isSidebarOpen
@@ -61,20 +70,31 @@ export default function SideBar() {
               })}
             >
               <Logo />
-              <NavItem href={"#"} label={"Home"} Icon={() => <BiHomeAlt2 />} />
               <NavItem
-                href={"#"}
+                route="/home"
+                href={"/home"}
+                label={"Home"}
+                Icon={() => <BiHomeAlt2 />}
+              />
+              <NavItem
+                route="/add_product"
+                href={"/add_product"}
                 label={"Novo produto"}
                 Icon={() => <BsPlusLg />}
               />
               <NavItem
-                href={"/user"}
+                route="/user/[idUser]"
+                href={"/user/" + user?.id}
                 label={"Meu perfil"}
                 Icon={() => <AiOutlineUser />}
               />
-              <NavItem href={"#"} label={"Sair"} Icon={() => <FiLogOut />} />
-              <button onClick={() => setisSidebarOpen((oldValue) => !oldValue)}>
-                Abrir sidebar
+              <NavItem
+                onClick={() => setIsOpenPopupLogout(true)}
+                label={"Sair"}
+                Icon={() => <FiLogOut />}
+              />
+              <button onClick={() => setIsSidebarOpen((oldValue) => !oldValue)}>
+                {isSidebarOpen ? "Fechar" : "Abrir"} sidebar
               </button>
             </Stack>{" "}
           </Stack>{" "}
