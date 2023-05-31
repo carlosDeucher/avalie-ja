@@ -3,14 +3,14 @@
 import useInlineStyle from "@/hooks/useInlineStyles";
 import { jsx } from "@emotion/react";
 
-const defaultButtonStyle = (theme, { disabled }) => ({
+const defaultButtonStyle = (theme, { disabled, color = "secondary" }) => ({
   padding: "0 24px",
   border: "none",
   cursor: "pointer",
   "&:hover": {
-    backgroundColor: theme.colors["secondary"].hover,
+    backgroundColor: theme.colors[color].hover,
   },
-  backgroundColor: theme.colors["secondary"].main,
+  backgroundColor: theme.colors[color].main,
   color: theme.colors["white"].main,
   fontSize: theme.fontSizes.medium,
   borderRadius: "0.3em",
@@ -30,8 +30,8 @@ const disabledStyle = (theme) => ({
 });
 
 export default function ButtonContained(props) {
-  const { sp, component, disabled } = props;
-  const defaultStyle = useInlineStyle(defaultButtonStyle, { disabled });
+  const { sp, component, disabled, color } = props;
+  const defaultStyle = useInlineStyle(defaultButtonStyle, { disabled, color });
   const currentDisabledStyle = useInlineStyle(disabled && disabledStyle);
   const spStyle = useInlineStyle(sp);
 
@@ -39,6 +39,7 @@ export default function ButtonContained(props) {
   delete commonProps.sp;
   delete commonProps.component;
   delete commonProps.disabled;
+  delete commonProps.color;
 
   return jsx(component || "button", {
     css: {
