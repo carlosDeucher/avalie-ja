@@ -6,52 +6,61 @@ import Text from "@/views/components/estructure/text/Text";
 import React, { useContext } from "react";
 import { SideBarContext } from "../../pageWrapper";
 import useBreakpoint from "@/hooks/useBreakpoint";
+import { useRouter } from "next/router";
 
-export default function NavItem({ Icon, label, href }) {
+export default function NavItem({ Icon, label, href, route, onClick }) {
   const { colors: colorsTheme } = useContext(ThemeContext);
   const { isSidebarOpen } = useContext(SideBarContext);
-  const isMobile = useBreakpoint("mobile");
+  const router = useRouter();
+  const isCurrentPage = route === router.route;
 
-  return (
-    <LinkNext href={href}>
-      <Stack
-        component="li"
+  const LiComponent = () => (
+    <Stack
+      component="li"
+      onClick={onClick}
+      sp={{
+        flexDirection: isSidebarOpen ? "row" : "column",
+        justifyContent: isSidebarOpen ? "start" : "center",
+        alignItems: "center",
+        color: colorsTheme.grey[3],
+        borderLeft: `2px solid transparent`,
+        borderBottom: `1px solid ${colorsTheme.white.dark}`,
+        backgroundColor: isCurrentPage && colorsTheme.primary.hover,
+        cursor: "pointer",
+        ":hover": {
+          color: colorsTheme.grey[5],
+          borderLeftColor: colorsTheme.grey[5],
+          backgroundColor: colorsTheme.primary.hover,
+        },
+      }}
+    >
+      <Box
+        sp={({ colors }) => ({
+          fontSize: "25px",
+          color: "inherit",
+          padding: "15px",
+          borderRight: isSidebarOpen ? `1px solid ${colors.white.dark}` : 0,
+        })}
+      >
+        <Icon />
+      </Box>
+      <Text
         sp={{
-          flexDirection: isSidebarOpen ? "row" : "column",
-          justifyContent: isSidebarOpen ? "start" :"center",
-          alignItems: "center",
-          color: colorsTheme.grey[3],
-          borderLeft: `2px solid transparent`,
-          borderBottom: `1px solid ${colorsTheme.white.dark}`,
-          ":hover": {
-            color: colorsTheme.grey[5],
-            borderLeftColor: colorsTheme.grey[5],
-            backgroundColor: colorsTheme.primary.hover,
-          },
+          color: "inherit",
+          display: isSidebarOpen ? "inline" : "none",
+          marginLeft: "20px",
         }}
       >
-        <Box
-          sp={({ colors }) => ({
-            fontSize: "25px",
-            color: "inherit",
-            padding: "15px",
-            borderRight: isSidebarOpen
-              ? `1px solid ${colors.white.dark}`
-              : 0,
-          })}
-        >
-          <Icon />
-        </Box>
-        <Text
-          sp={{
-            color: "inherit",
-            display: isSidebarOpen ? "inline" : "none",
-            marginLeft: "20px",
-          }}
-        >
-          {label}
-        </Text>
-      </Stack>
-    </LinkNext>
+        {label}
+      </Text>
+    </Stack>
   );
+
+  if (href)
+    return (
+      <LinkNext href={href}>
+        <LiComponent />
+      </LinkNext>
+    );
+  return <LiComponent />;
 }
