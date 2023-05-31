@@ -4,7 +4,7 @@ import React, { useContext, useState } from "react";
 import Stack from "../../estructure/stack/Stack";
 import { ThemeContext } from "@/contexts/ThemeProvider";
 import Box from "../../estructure/box/Box";
-import { BsCheckLg } from "react-icons/bs";
+import { BsCheckLg } from "react-icons/Bs";
 
 export default function CheckBox(props) {
   const { sp, labelText } = props;
@@ -60,10 +60,7 @@ export default function CheckBox(props) {
             style={{
               color: colorsTheme.white.main,
               position: "absolute",
-              left: 0,
-              right: 0,
-              bottom: 0,
-              top: 0,
+              inset: 0,
               width: "13px",
               height: "13px",
             }}
