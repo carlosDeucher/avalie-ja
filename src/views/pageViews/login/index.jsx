@@ -1,5 +1,4 @@
 import Stack from "@/views/components/estructure/stack/Stack";
-import Header from "@/views/components/ui/header/Header";
 import ContainerLogin from "@/views/components/estructure/container/ContainerLogin";
 import { createContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -18,7 +17,6 @@ export default function LoginView() {
 
   return (
     <ViewLoginContext.Provider value={{ step, setStep }}>
-      <Header></Header>
       <ContainerLogin maxWidth="laptop">
         <Stack
           justifyContent={"center"}
