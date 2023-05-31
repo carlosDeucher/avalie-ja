@@ -11,7 +11,7 @@ export default function ShowdataMinimalist({ label, value, skeleton }) {
     <Box sp={{ padding: "13px 18px" }}>
       <Stack justifyContent="space-between">
         <Stack rowGap={"5px"} sp={{ flexDirection: ["column", "column","row"] }}>
-          <Box sp={{ minWidth: "230px" }}>
+          <Box sp={{ minWidth: [0,"230px"] }}>
             <Text fontSize="medium">{label}</Text>
           </Box>
           {!skeleton ? <Text sp={{color:colorsTheme.grey[6]}}>{value}</Text> : <></>}
