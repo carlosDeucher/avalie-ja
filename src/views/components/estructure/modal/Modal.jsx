@@ -24,6 +24,8 @@ export default function Modal({ isOpen, onClose, children, sp }) {
           zIndex: 500,
           inset: 0,
           display: isOpen || showComponent ? "block" : "none",
+          width: "100%",
+          overflow: "overlay",
         }}
       >
         <Box
@@ -47,24 +49,33 @@ export default function Modal({ isOpen, onClose, children, sp }) {
           })}
           onClick={onClose}
         >
-          <Box
-            onClick={(event) => {
-              event.stopPropagation();
-            }}
-            sp={({ colors }) => ({
+          <Stack
+            sp={{
+              padding: "16px",
               width: "fit-content",
-              borderRadius: "5px",
-              backgroundColor: colors.white.main,
               position: "absolute",
               zIndex: 100,
+              maxWidth: "100%",
               transform: "translateY(-100px)",
-              margin: "32px",
-              maxHeight: "calc(100% - 64px)",
-              ...styleProps,
-            })}
+            }}
           >
-            {children}
-          </Box>
+            <Box
+              onClick={(event) => {
+                event.stopPropagation();
+              }}
+              sp={({ colors }) => ({
+                width: "fit-content",
+                borderRadius: "5px",
+                backgroundColor: colors.white.main,
+                maxHeight: "calc(100% - 64px)",
+                flex: 1,
+                maxWidth: "100%",
+                ...styleProps,
+              })}
+            >
+              {children}
+            </Box>
+          </Stack>
         </Stack>
       </Box>
     </>
