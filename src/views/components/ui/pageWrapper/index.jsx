@@ -6,9 +6,9 @@ import Box from "../../estructure/box/Box";
 
 export const SideBarContext = createContext();
 export default function PageWrapper({ children }) {
-  const [isSidebarOpen, setisSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
-    <SideBarContext.Provider value={{isSidebarOpen, setisSidebarOpen}}>
+    <SideBarContext.Provider value={{isSidebarOpen, setIsSidebarOpen}}>
       <Stack direction="column" sp={{ height: "100vh", overflow: "hidden" }}>
         <Header
         />
