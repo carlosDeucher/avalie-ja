@@ -17,16 +17,17 @@ export default function SideBar() {
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SideBarContext);
   const { user } = useContext(UserContext);
   const isMobile = useBreakpoint("mobile");
+  const isMobileOrFirstRender = isMobile || isMobile === undefined;
   const [isOpenPopupLogout, setIsOpenPopupLogout] = useState(false);
 
   let widthSidebar;
-  if (isMobile) {
+  if (isMobileOrFirstRender) {
     widthSidebar = isSidebarOpen ? "250px" : 0;
   } else {
     widthSidebar = isSidebarOpen ? "250px" : "60px";
   }
 
-  useEffect(() => setIsSidebarOpen(false), [isMobile]);
+  useEffect(() => setIsSidebarOpen(false), [isMobileOrFirstRender]);
 
   return (
     <>
@@ -36,10 +37,10 @@ export default function SideBar() {
       />
       <Box
         onClick={(e) => {
-          if (isMobile && isSidebarOpen) setIsSidebarOpen(false);
+          if (isMobileOrFirstRender && isSidebarOpen) setIsSidebarOpen(false);
         }}
         sp={
-          isMobile && isSidebarOpen
+          isMobileOrFirstRender && isSidebarOpen
             ? {
                 position: "absolute",
                 inset: 0,
@@ -63,7 +64,7 @@ export default function SideBar() {
                 backgroundColor: colors.primary.main,
                 transition: "width 200ms",
                 borderRadius: "10px",
-                margin: (!isMobile || isSidebarOpen) && "15px",
+                margin: (!isMobileOrFirstRender || isSidebarOpen) && "15px",
                 marginRight: 0,
                 boxShadow: shadows.xlarge,
                 overflow: "hidden",

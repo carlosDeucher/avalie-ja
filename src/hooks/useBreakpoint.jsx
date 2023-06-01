@@ -25,8 +25,9 @@ export default function useBreakpoint(breakpointToValidate) {
     // Remove event listener on cleanup
     return () => window.removeEventListener("resize", handleResize);
   }, []); // Empty array ensures that effect is only run on mount
-
-  return !breakpointToValidate //caso seja passado um breakpoint para validar retorna um boolean, senao retorna o breakpoint atual
-    ? currentBreakpoint
-    : currentBreakpoint === breakpointToValidate;
+  if (currentBreakpoint === null) return undefined;
+  else
+    return !breakpointToValidate //caso seja passado um breakpoint para validar retorna um boolean, senao retorna o breakpoint atual
+      ? currentBreakpoint
+      : currentBreakpoint === breakpointToValidate;
 }

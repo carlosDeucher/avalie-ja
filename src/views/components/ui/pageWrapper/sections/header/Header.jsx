@@ -6,7 +6,7 @@ import { SideBarContext } from "../..";
 
 export default function Header() {
   const { colors: colorsTheme } = useContext(ThemeContext);
-  const { isSidebarOpen, setisSidebarOpen } =
+  const {  setIsSidebarOpen } =
     useContext(SideBarContext);
   return (
     <>
@@ -15,7 +15,7 @@ export default function Header() {
         sp={{ backgroundColor: colorsTheme.primary.main, height: "4rem" }}
       >
         <Box
-          onClick={() => setisSidebarOpen(true)}
+          onClick={() => setIsSidebarOpen(true)}
           sp={{
             padding: "15px",
             color: colorsTheme.grey[3],
