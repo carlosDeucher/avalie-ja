@@ -61,6 +61,7 @@ export default function Input(props) {
               lineHeight: "1.5rem",
               flexGrow: 1,
               backgroundColor: colors.white.main,
+              maxWidth:"100%"
             }}
             id="input"
           ></input>
