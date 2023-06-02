@@ -5,12 +5,13 @@ import { useContext } from "react";
 import Box from "../box/Box";
 import useInlineStyle from "@/hooks/useInlineStyles";
 
-export default function Container({ maxWidth, children, sp }) {
+export default function Container({ maxWidth, children, sp, component }) {
   const { breakpoints } = useContext(ThemeContext);
   const styleProps = useInlineStyle(sp);
   return (
     <>
       <Box
+        component={component}
         sp={{
           maxWidth: breakpoints[maxWidth],
           margin: "0 auto",
