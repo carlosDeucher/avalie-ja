@@ -16,50 +16,52 @@ export default function UserView() {
         isOpen={isOpenModalEditar}
         label={"Informe o novo e-mail"}
       />
-      <Container maxWidth="tablet">
-        <Text sp={{ marginTop: "40px" }} fontSize={"large"}>
-          Meus dados
-        </Text>
-        <Text sp={{ marginTop: "30px" }} fontSize={"xmedium"}>
-          Dados da conta
-        </Text>
-        <Card sp={{ marginTop: "10px" }}>
-          <Box
-            sp={{ cursor: "pointer" }}
-            onClick={() => {
-              setIsOpenModalEditar(true);
-            }}
-          >
-            <ShowdataMinimalist
-              label="Usuário"
-              value={"carlos henrique deucher"}
-            />
-          </Box>
-          <Divider />
-          <Box
-            sp={{ cursor: "pointer" }}
-            onClick={() => {
-              setIsOpenModalEditar(true);
-            }}
-          >
-            <ShowdataMinimalist
-              label="E-mail"
-              value={"carloshenriquedeucher@gmail.com"}
-            />
-          </Box>
-          <Divider />
-          <Box
-            sp={{ cursor: "pointer" }}
-            onClick={() => {
-              setIsOpenModalEditar(true);
-            }}
-          >
-            <ShowdataMinimalist
-              label="Senha"
-              value={"carlos henrique deucher"}
-            />
-          </Box>
-        </Card>
+      <Container component="main" maxWidth="tablet">
+        <Box component="section">
+          <Text sp={{ marginTop: "40px" }} fontSize={"large"}>
+            Meus dados
+          </Text>
+          <Text sp={{ marginTop: "30px" }} fontSize={"xmedium"}>
+            Dados da conta
+          </Text>
+          <Card sp={{ marginTop: "10px" }}>
+            <Box
+              sp={{ cursor: "pointer" }}
+              onClick={() => {
+                setIsOpenModalEditar(true);
+              }}
+            >
+              <ShowdataMinimalist
+                label="Usuário"
+                value={"carlos henrique deucher"}
+              />
+            </Box>
+            <Divider />
+            <Box
+              sp={{ cursor: "pointer" }}
+              onClick={() => {
+                setIsOpenModalEditar(true);
+              }}
+            >
+              <ShowdataMinimalist
+                label="E-mail"
+                value={"carloshenriquedeucher@gmail.com"}
+              />
+            </Box>
+            <Divider />
+            <Box
+              sp={{ cursor: "pointer" }}
+              onClick={() => {
+                setIsOpenModalEditar(true);
+              }}
+            >
+              <ShowdataMinimalist
+                label="Senha"
+                value={"carlos henrique deucher"}
+              />
+            </Box>
+          </Card>
+        </Box>
       </Container>{" "}
     </>
   );

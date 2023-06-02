@@ -48,7 +48,7 @@ export default function UserRegisterView() {
   };
 
   return (
-    <Container sp={{ padding:0 }} maxWidth={"laptop"}>
+    <Container component="main" sp={{ padding: 0 }} maxWidth={"laptop"}>
       <Card
         sp={{
           margin: "0 auto",

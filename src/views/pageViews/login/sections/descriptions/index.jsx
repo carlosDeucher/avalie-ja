@@ -28,7 +28,7 @@ export default function Descriptions() {
       {step === "confirmEmail" && (
         <Text fontSize={"xlarge"} fontWeight={600}>
           Digite o seu{" "}
-          <Text component={"span"} sp={{ whiteSpace: "nowrap" }}>
+          <Text fontWeight={600} component={"span"} sp={{ whiteSpace: "nowrap" }}>
             e-mail
           </Text>{" "}
           do Avalie&nbsp;Ja
