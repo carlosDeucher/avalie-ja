@@ -3,6 +3,7 @@
 import { ThemeContext } from "@/contexts/ThemeProvider";
 import useInlineStyle from "@/hooks/useInlineStyles";
 import { useContext } from "react";
+import Box from "../box/Box";
 
 export default function ContainerLogin({ maxWidth, children }) {
   const style = useInlineStyle({
@@ -12,7 +13,9 @@ export default function ContainerLogin({ maxWidth, children }) {
   });
   return (
     <>
-      <div css={{ ...style }}>{children}</div>
+      <Box component="main" sp={{ ...style }}>
+        {children}
+      </Box>
     </>
   );
 }

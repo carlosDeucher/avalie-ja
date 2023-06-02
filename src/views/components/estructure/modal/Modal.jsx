@@ -63,13 +63,14 @@ export default function Modal({ isOpen, onClose, children, sp }) {
               onClick={(event) => {
                 event.stopPropagation();
               }}
-              sp={({ colors }) => ({
+              sp={({ colors, shadows }) => ({
                 width: "fit-content",
                 borderRadius: "5px",
                 backgroundColor: colors.white.main,
                 maxHeight: "calc(100% - 64px)",
                 flex: 1,
                 maxWidth: "100%",
+                boxShadow: shadows.xlarge,
                 ...styleProps,
               })}
             >

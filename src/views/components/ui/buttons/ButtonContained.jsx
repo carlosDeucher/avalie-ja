@@ -4,7 +4,7 @@ import useInlineStyle from "@/hooks/useInlineStyles";
 import { jsx } from "@emotion/react";
 
 const defaultButtonStyle = (theme, { disabled, color = "secondary" }) => ({
-  padding: "0 24px",
+  padding: "10px 24px",
   border: "none",
   cursor: "pointer",
   "&:hover": {
@@ -16,7 +16,6 @@ const defaultButtonStyle = (theme, { disabled, color = "secondary" }) => ({
   borderRadius: "0.3em",
   transition: !disabled && "background-color 350ms",
   fontWeight: "600",
-  height: "43px",
 });
 
 const disabledStyle = (theme) => ({
