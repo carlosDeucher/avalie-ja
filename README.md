@@ -10,6 +10,8 @@ useInlineStyles: https://levelup.gitconnected.com/making-sense-of-react-inline-s
 }
 
 Layout:{
+fileUploader:https://br.pinterest.com/pin/636274253621100692/
+ajuste de imagens do fileUploader:https://studio.youtube.com/channel/UCbr35a34Af7HRPWppPMFLKg/editing/images
 sidebar:https://br.pinterest.com/pin/98727416806624557/
 meu perfil:https://www.mercadolivre.com.br/profile?view=profile&source=rules
 Cadastrar produto: https://www.mercadolivre.com.br/anuncie/hub
