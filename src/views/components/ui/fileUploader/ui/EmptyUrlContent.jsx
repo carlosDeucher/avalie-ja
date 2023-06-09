@@ -5,7 +5,7 @@ import React from "react";
 import Dropzone from "react-dropzone";
 import { MdFileUpload } from "react-icons/Md";
 
-export default function EmptyUrlContent({onChange}) {
+export default function EmptyUrlContent({ onChange, onAlert }) {
   return (
     <Dropzone
       onDrop={(acceptedFiles) => {
@@ -31,7 +31,9 @@ export default function EmptyUrlContent({onChange}) {
                   width: "50px",
                   height: "50px",
                   fontSize: "50px",
-                  color: colors.primary.dark,
+                  color: !onAlert
+                    ? colors.primary.dark
+                    : colors.error.main,
                 })}
               >
                 <MdFileUpload />

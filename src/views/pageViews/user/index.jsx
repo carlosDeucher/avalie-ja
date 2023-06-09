@@ -18,10 +18,10 @@ export default function UserView() {
       />
       <Container component="main" maxWidth="tablet">
         <Box component="section">
-          <Text sp={{ marginTop: "40px" }} fontSize={"large"}>
+          <Text component="h1" sp={{ marginTop: "40px" }} fontSize={"large"}>
             Meus dados
           </Text>
-          <Text sp={{ marginTop: "30px" }} fontSize={"xmedium"}>
+          <Text component="h2" sp={{ marginTop: "30px" }} fontSize={"xmedium"}>
             Dados da conta
           </Text>
           <Card sp={{ marginTop: "10px" }}>

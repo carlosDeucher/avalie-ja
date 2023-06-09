@@ -6,7 +6,7 @@ import React, { useContext } from "react";
 import { MdCheck } from "react-icons/Md";
 import ButtonText from "../../buttons/ButtonText";
 
-export default function ReadyContent({ fileUrl, onRemove }) {
+export default function ReadyContent({ fileUrl, onRemove, onAlert }) {
   const { colors: colorsTheme } = useContext(ThemeContext);
   return (
     <>
@@ -28,16 +28,30 @@ export default function ReadyContent({ fileUrl, onRemove }) {
                 width: "50px",
                 height: "50px",
                 fontSize: "50px",
-                color: colorsTheme.secondary.main,
+                color: !onAlert
+                  ? colorsTheme.secondary.main
+                  : colorsTheme.error.main,
               }}
             >
               <MdCheck />
             </Box>
-            <Text sp={{ color: colorsTheme.secondary.dark }} fontSize="xmedium">
+            <Text
+              sp={{
+                color: !onAlert
+                  ? colorsTheme.secondary.dark
+                  : colorsTheme.error.dark,
+              }}
+              fontSize="xmedium"
+            >
               Arquivo selecionado!
             </Text>
             <Text
-              sp={{ marginTop: "5px", color: colorsTheme.secondary.dark }}
+              sp={{
+                marginTop: "5px",
+                color: !onAlert
+                  ? colorsTheme.secondary.dark
+                  : colorsTheme.error.dark,
+              }}
               fontSize="medium"
             >
               Clique para visualizar

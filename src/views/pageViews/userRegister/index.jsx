@@ -52,7 +52,7 @@ export default function UserRegisterView() {
       <Card
         sp={{
           margin: "0 auto",
-          marginTop: [0, "120px"],
+          marginTop: [0, "40px"],
           padding: "40px",
           width: ["100%", "fit-content"],
           height: ["100vh", "auto"],
@@ -62,9 +62,10 @@ export default function UserRegisterView() {
           <Box sp={{ flex: 1 }}>
             <Text
               component="h1"
+              fontWeight={500}
               sp={(theme) => ({ fontSize: theme.fontSizes.large })}
             >
-              Criar sua Conta do Avalie Ja
+              Crie sua Conta do AvalieJá
             </Text>
             <Box
               component="form"

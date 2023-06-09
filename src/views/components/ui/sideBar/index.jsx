@@ -80,8 +80,8 @@ export default function SideBar() {
                   Icon={() => <BiHomeAlt2 />}
                 />
                 <NavItem
-                  route="/add_product"
-                  href={"/add_product"}
+                  route="/create_product"
+                  href={"/create_product"}
                   label={"Novo produto"}
                   Icon={() => <BsPlusLg />}
                 />
