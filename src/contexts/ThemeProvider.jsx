@@ -56,6 +56,11 @@ const colors = deepFreeze({
     disabled: "#bdbdbd",
     dark: "#9e9e9e",
   },
+  cancel: {
+    main: "rgba(204, 204, 204, 1)",
+    hover: "rgba(170, 170, 170, 1)",
+    disabled: "#bdbdbd",
+  },
   grey: [
     "rgba(250, 250, 250, 1)",
     "rgba(244, 244, 244, 1)",
