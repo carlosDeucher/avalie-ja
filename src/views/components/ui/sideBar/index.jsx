@@ -11,7 +11,7 @@ import Box from "../../estructure/box/Box";
 import { SideBarContext } from "../pageWrapper";
 import AsideSelector from "./ui/AsideSelector";
 import { UserContext } from "@/contexts/UserContext";
-import PopupLogout from "../popupLogout";
+import PopupLogout from "../popups/popupLogout";
 
 export default function SideBar() {
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SideBarContext);
@@ -59,9 +59,10 @@ export default function SideBar() {
             <Stack
               component="ul"
               direction="column"
+              justifyContent="space-between"
               sp={({ colors, shadows }) => ({
                 width: widthSidebar,
-                backgroundColor: colors.primary.main,
+                backgroundColor: colors.primary.dark,
                 transition: "width 200ms",
                 borderRadius: "10px",
                 margin: (!isMobileOrFirstRender || isSidebarOpen) && "15px",
@@ -70,30 +71,32 @@ export default function SideBar() {
                 overflow: "hidden",
               })}
             >
-              <Logo />
-              <NavItem
-                route="/home"
-                href={"/home"}
-                label={"Home"}
-                Icon={() => <BiHomeAlt2 />}
-              />
-              <NavItem
-                route="/add_product"
-                href={"/add_product"}
-                label={"Novo produto"}
-                Icon={() => <BsPlusLg />}
-              />
-              <NavItem
-                route="/user/[idUser]"
-                href={"/user/" + user?.id}
-                label={"Meu perfil"}
-                Icon={() => <AiOutlineUser />}
-              />
-              <NavItem
-                onClick={() => setIsOpenPopupLogout(true)}
-                label={"Sair"}
-                Icon={() => <FiLogOut />}
-              />
+              <Box>
+                <Logo isMobileOrFirstRender={isMobileOrFirstRender} />
+                <NavItem
+                  route="/home"
+                  href={"/home"}
+                  label={"Home"}
+                  Icon={() => <BiHomeAlt2 />}
+                />
+                <NavItem
+                  route="/add_product"
+                  href={"/add_product"}
+                  label={"Novo produto"}
+                  Icon={() => <BsPlusLg />}
+                />
+                <NavItem
+                  route="/user/[idUser]"
+                  href={"/user/" + user?.id}
+                  label={"Meu perfil"}
+                  Icon={() => <AiOutlineUser />}
+                />
+                <NavItem
+                  onClick={() => setIsOpenPopupLogout(true)}
+                  label={"Sair"}
+                  Icon={() => <FiLogOut />}
+                />{" "}
+              </Box>
               <button onClick={() => setIsSidebarOpen((oldValue) => !oldValue)}>
                 {isSidebarOpen ? "Fechar" : "Abrir"} sidebar
               </button>
