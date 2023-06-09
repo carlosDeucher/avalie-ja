@@ -5,18 +5,28 @@ import { useContext, useRef } from "react";
 import { ThemeContext } from "@/contexts/ThemeProvider";
 import InputError from "../error/InputError";
 import Box from "../../estructure/box/Box";
+import { jsx } from "@emotion/react";
+import handleResponsiveValues, {
+  convertResponsiveValues,
+} from "@/utils/handleResponsiveValues";
+import useBreakpoint from "@/hooks/useBreakpoint";
 export default function Input(props) {
   const {
     register, //register  utilizados para controlar o input com o useForm
     sp,
     error,
     labelText,
+    multiline,
   } = props;
+  const breakpoint = useBreakpoint();
+  const rows = convertResponsiveValues(props.rows, breakpoint);
   const commonProps = { ...props };
   delete commonProps.register;
   delete commonProps.sp;
   delete commonProps.error;
   delete commonProps.labelText;
+  delete commonProps.multiline;
+  delete commonProps.rows;
 
   const { fontSizes, colors } = useContext(ThemeContext);
   const style = useInlineStyle(sp);
@@ -51,20 +61,22 @@ export default function Input(props) {
             flex: 1,
           }}
         >
-          <input
-            {...commonProps}
-            {...registerHookForm}
-            css={{
+          {jsx(multiline ? "textarea" : "input", {
+            ...commonProps,
+            ...registerHookForm,
+            css: {
               border: "none",
               outline: "none",
               fontSize: fontSizes["medium"],
               lineHeight: "1.5rem",
               flexGrow: 1,
               backgroundColor: colors.white.main,
-              maxWidth:"100%"
-            }}
-            id="input"
-          ></input>
+              maxWidth: "100%",
+              resize: "none",
+            },
+            id: multiline ? "textarea" : "input",
+            rows,
+          })}
         </div>
       </label>
       <InputError showError={!!error}>{error}</InputError>
