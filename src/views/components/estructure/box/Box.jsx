@@ -13,7 +13,7 @@ export default function Box(props) {
   delete commonProps.component;
 
   return jsx(component || "div", {
-    css: style,
+    css: { ...{ display: "block" }, ...style },
     ...commonProps,
   });
 }

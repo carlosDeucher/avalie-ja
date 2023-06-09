@@ -24,7 +24,7 @@ export default function NavItem({ Icon, label, href, route, onClick }) {
         alignItems: "center",
         color: colorsTheme.grey[3],
         borderLeft: `2px solid transparent`,
-        borderBottom: `1px solid ${colorsTheme.white.dark}`,
+        borderBottom: `1px solid #283a63`,
         backgroundColor: isCurrentPage && colorsTheme.primary.hover,
         cursor: "pointer",
         ":hover": {
@@ -39,7 +39,7 @@ export default function NavItem({ Icon, label, href, route, onClick }) {
           fontSize: "25px",
           color: "inherit",
           padding: "15px",
-          borderRight: isSidebarOpen ? `1px solid ${colors.white.dark}` : 0,
+          borderRight: isSidebarOpen ? `1px solid #283a63` : 0,
         })}
       >
         <Icon />
