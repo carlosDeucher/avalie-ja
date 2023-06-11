@@ -14,6 +14,9 @@ import LinkNext from "@/views/components/estructure/link/LinkNext";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ApiUserRegisterContext } from "@/pages/user_register";
+import Image from "next/image";
+import logoLarge from "public/logos/logo-large.png";
+
 
 const schema = yup.object({
   email: yup
@@ -60,6 +63,9 @@ export default function UserRegisterView() {
       >
         <Stack>
           <Box sp={{ flex: 1 }}>
+          <Box sp={{ position: "relative", width:"100px", height:"28px", transform:"translateY(-15px)" }}>
+            <Image src={logoLarge} fill alt="logo da marca" />
+          </Box>
             <Text
               component="h1"
               fontWeight={500}

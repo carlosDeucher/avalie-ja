@@ -28,7 +28,7 @@ export default function MessageProductCreated() {
             margin:"20px 0"
           }}
         >
-          <Image src={thanksSvg} fill />
+          <Image src={thanksSvg} fill alt="imagem de agradecimento"/>
         </Box>
 
         <MainLink
