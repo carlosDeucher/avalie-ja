@@ -6,15 +6,24 @@ import Text from "@/views/components/estructure/text/Text";
 import ShowdataMinimalist from "@/views/components/ui/showData/ShowdataMinimalist";
 import React, { useState } from "react";
 import ModalEditarCampo from "./windows/ModalEditarCampo";
+import ModalEditarSenha from "./windows/ModalEditarSenha";
 
 export default function UserView() {
-  const [isOpenModalEditar, setIsOpenModalEditar] = useState(false);
+  const [modalEditarCampoConfig, setModalEditarCampoConfig] = useState({
+    open: false,
+  });
+  const [isOpenModalAlterarSenha, setIsOpenModalAlterarSenha] = useState(false);
   return (
     <>
       <ModalEditarCampo
-        onClose={() => setIsOpenModalEditar(false)}
-        isOpen={isOpenModalEditar}
-        label={"Informe o novo e-mail"}
+        onClose={() => setModalEditarCampoConfig(false)}
+        isOpen={modalEditarCampoConfig.open}
+        label={modalEditarCampoConfig.label}
+        name={modalEditarCampoConfig.name}
+      />
+      <ModalEditarSenha
+        isOpen={isOpenModalAlterarSenha}
+        onClose={() => setIsOpenModalAlterarSenha(false)}
       />
       <Container component="main" maxWidth="tablet">
         <Box component="section">
@@ -28,7 +37,11 @@ export default function UserView() {
             <Box
               sp={{ cursor: "pointer" }}
               onClick={() => {
-                setIsOpenModalEditar(true);
+                setModalEditarCampoConfig({
+                  open: true,
+                  label: "Informe o novo nome de usuário",
+                  name: "username",
+                });
               }}
             >
               <ShowdataMinimalist
@@ -40,7 +53,11 @@ export default function UserView() {
             <Box
               sp={{ cursor: "pointer" }}
               onClick={() => {
-                setIsOpenModalEditar(true);
+                setModalEditarCampoConfig({
+                  open: true,
+                  label: "Informe o novo e-mail",
+                  name: "email",
+                });
               }}
             >
               <ShowdataMinimalist
@@ -52,7 +69,7 @@ export default function UserView() {
             <Box
               sp={{ cursor: "pointer" }}
               onClick={() => {
-                setIsOpenModalEditar(true);
+                setIsOpenModalAlterarSenha(true);
               }}
             >
               <ShowdataMinimalist

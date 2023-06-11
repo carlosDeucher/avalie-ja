@@ -5,16 +5,34 @@ import Text from "@/views/components/estructure/text/Text";
 import ButtonContained from "@/views/components/ui/buttons/ButtonContained";
 import ButtonText from "@/views/components/ui/buttons/ButtonText";
 import Input from "@/views/components/ui/input/Input";
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { useForm } from "react-hook-form";
 
 export default function ModalEditarCampo({
   isOpen,
   onClose,
   postFunction,
   name,
-  format,
   label,
 }) {
+  const labelRef = useRef("");
+  if (label) labelRef.current = label; //mantem o label enquanto o componente se desmonta
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = async (form) => {
+    const success = await postFunction(form);
+    if (success) onClose();
+  };
+
+  useEffect(() => {
+    reset();
+  }, [isOpen]);
+
   return (
     <Modal
       sp={{
@@ -26,14 +44,18 @@ export default function ModalEditarCampo({
       onClose={onClose}
     >
       <Text fontSize="large">Alterar campo</Text>
-      <Input
-        labelText={label}
-        sp={{
-          marginTop: "30px",
-          width: "100%",
-          minWidth: "100px",
-        }}
-      />
+      <Box component="form" id="change-data" onSubmit={handleSubmit(onSubmit)}>
+        <Input
+          labelText={labelRef.current}
+          register={name && register(name, { required: true })}
+          error={errors[name] && "Campo requerido"}
+          sp={{
+            marginTop: "30px",
+            width: "100%",
+            minWidth: "100px",
+          }}
+        />
+      </Box>
       <Stack
         justifyContent="end"
         rowGap="15px"
@@ -44,7 +66,9 @@ export default function ModalEditarCampo({
           Cancelar
         </ButtonText>
 
-        <ButtonContained onClick={onClose}>Salvar</ButtonContained>
+        <ButtonContained type="submit" form="change-data">
+          Salvar
+        </ButtonContained>
       </Stack>
     </Modal>
   );
