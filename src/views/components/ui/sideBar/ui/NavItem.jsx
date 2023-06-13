@@ -19,8 +19,9 @@ export default function NavItem({ Icon, label, href, route, onClick }) {
       component="li"
       onClick={onClick}
       sp={{
-        flexDirection: isSidebarOpen ? "row" : "column",
-        justifyContent: isSidebarOpen ? "start" : "center",
+        flexDirection: "row",
+        justifyContent: "start",
+        overflow:"hidden",
         alignItems: "center",
         color: colorsTheme.grey[3],
         borderLeft: `2px solid transparent`,
@@ -47,8 +48,9 @@ export default function NavItem({ Icon, label, href, route, onClick }) {
       <Text
         sp={{
           color: "inherit",
-          display: isSidebarOpen ? "inline" : "none",
+          display: "inline",
           marginLeft: "20px",
+          whiteSpace:"nowrap"
         }}
       >
         {label}

@@ -12,6 +12,7 @@ import { SideBarContext } from "../pageWrapper";
 import AsideSelector from "./ui/AsideSelector";
 import { UserContext } from "@/contexts/UserContext";
 import PopupLogout from "../popups/popupLogout";
+import ExpandSidebar from "./ui/expandSidebar";
 
 export default function SideBar() {
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SideBarContext);
@@ -28,7 +29,6 @@ export default function SideBar() {
   }
 
   useEffect(() => setIsSidebarOpen(false), [isMobileOrFirstRender]);
-
   return (
     <>
       <PopupLogout
@@ -97,9 +97,7 @@ export default function SideBar() {
                   Icon={() => <FiLogOut />}
                 />{" "}
               </Box>
-              <button onClick={() => setIsSidebarOpen((oldValue) => !oldValue)}>
-                {isSidebarOpen ? "Fechar" : "Abrir"} sidebar
-              </button>
+              <ExpandSidebar />
             </Stack>{" "}
           </Stack>{" "}
         </AsideSelector>
