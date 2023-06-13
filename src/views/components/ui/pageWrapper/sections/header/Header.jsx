@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ThemeContext } from "@/contexts/ThemeProvider";
 import Box from "../../../../estructure/box/Box";
 import { MdMenu } from "react-icons/Md";
@@ -7,10 +7,14 @@ import Container from "@/views/components/estructure/container/Container";
 import Image from "next/image";
 import logoEscrita from "public/logos/logo-escrita.png";
 import Stack from "@/views/components/estructure/stack/Stack";
+import { pagesLayout } from "@/utils/pagesLayout";
+import { useRouter } from "next/router";
 
 export default function Header() {
   const { colors: colorsTheme } = useContext(ThemeContext);
   const { setIsSidebarOpen } = useContext(SideBarContext);
+  const router = useRouter();
+
   return (
     <>
       <Box
@@ -22,28 +26,34 @@ export default function Header() {
           alignItems: "center",
         }}
       >
-        <Stack
-          sp={{
-            height: "100%",
-            padding: "0 15px",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <Box
-            onClick={() => setIsSidebarOpen(true)}
+        {pagesLayout[router.route].renderSidebar ? (
+          <Stack
             sp={{
-              color: colorsTheme.grey[3],
-              display: ["block", "none"],
-              fontSize: "25px",
-              ":hover": {
-                color: colorsTheme.grey[5],
-              },
+              height: "100%",
+              padding: "0 15px",
+              display: "flex",
+              alignItems: "center",
             }}
           >
-            <MdMenu />
-          </Box>
-        </Stack>
+            <Box
+              component="button"
+              onClick={() => setIsSidebarOpen(true)}
+              sp={{
+                color: colorsTheme.grey[3],
+                display: ["block", "none"],
+                fontSize: "25px",
+                cursor: "pointer",
+                ":hover": {
+                  color: colorsTheme.grey[5],
+                },
+              }}
+            >
+              <MdMenu />
+            </Box>
+          </Stack>
+        ) : (
+          <Box sp={{ minWidth: "55px" }} />
+        )}
 
         <Container
           maxWidth={"desktop"}
@@ -52,7 +62,7 @@ export default function Header() {
             alignItems: "center",
             height: "100%",
             display: "flex",
-            flex:1
+            flex: 1,
           }}
         >
           <Box
