@@ -74,7 +74,6 @@ export default function Input(props) {
               maxWidth: "100%",
               resize: "none",
             },
-            id: multiline ? "textarea" : "input",
             rows,
           })}
         </div>
