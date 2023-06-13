@@ -20,11 +20,18 @@ export default function PageWrapper({ children }) {
   return (
     <SideBarContext.Provider value={{ isSidebarOpen, setIsSidebarOpen }}>
       <Stack direction="column" sp={{ height: "100vh", overflow: "hidden" }}>
-        <Header />
+        <Header /> {/* 3rem */}
         <Stack sp={{ flex: 1 }}>
           {pagesLayout[router.route].renderSidebar && <SideBar />}
-
-          <Box sp={{ overflow: "overlay", flex: 1 }}>{children}</Box>
+          <Box
+            sp={{
+              overflow: "overlay",
+              flex: 1,
+              maxHeight: "calc(100vh - 3rem)",
+            }}
+          >
+            {children}
+          </Box>
         </Stack>
       </Stack>
     </SideBarContext.Provider>
