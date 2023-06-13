@@ -8,7 +8,7 @@ export default function GlobalStyle() {
     <Global
       styles={css`
         html {
-          font-family: 'Roboto', sans-serif;
+          font-family: "Roboto", sans-serif;
           font-size: 14px;
           @media (min-width: ${themeProvider.breakpoints.tablet}px) {
             font-size: 16px;
@@ -19,6 +19,46 @@ export default function GlobalStyle() {
           background-color: ${themeProvider.colors.background.main};
           line-height: 1;
         }
+        button {
+          /* Reset box-sizing */
+          box-sizing: border-box;
+
+          /* Remove margin */
+          margin: 0;
+
+          /* Remove padding */
+          padding: 0;
+
+          /* Remove background */
+          background: none;
+
+          /* Remove border */
+          border: none;
+
+          /* Reset font styles */
+          font-family: inherit;
+          font-size: inherit;
+          font-weight: inherit;
+          line-height: inherit;
+
+          /* Reset text styles */
+          color: inherit;
+          text-align: inherit;
+          text-decoration: none;
+          text-transform: none;
+
+          /* Reset cursor */
+          cursor: pointer;
+
+          /* Reset outline */
+          outline: none;
+
+          /* Reset appearance */
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+        }
+        ,
         html,
         body,
         div,
@@ -104,7 +144,7 @@ export default function GlobalStyle() {
           padding: 0;
           border: 0;
           vertical-align: baseline;
-          font-weight:400;
+          font-weight: 400;
         }
         /* HTML5 display-role reset for older browsers */
         article,
