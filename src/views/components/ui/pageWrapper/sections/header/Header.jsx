@@ -9,10 +9,15 @@ import logoEscrita from "public/logos/logo-escrita.png";
 import Stack from "@/views/components/estructure/stack/Stack";
 import { pagesLayout } from "@/utils/pagesLayout";
 import { useRouter } from "next/router";
+import ButtonContained from "../../../buttons/ButtonContained";
+import LinkNext from "@/views/components/estructure/link/LinkNext";
+import Input from "../../../input/Input";
+import useBreakpoint from "@/hooks/useBreakpoint";
 
 export default function Header() {
   const { colors: colorsTheme } = useContext(ThemeContext);
   const { setIsSidebarOpen } = useContext(SideBarContext);
+  const isMobile = useBreakpoint("mobile");
   const router = useRouter();
 
   return (
@@ -21,16 +26,16 @@ export default function Header() {
         component="header"
         sp={{
           backgroundColor: colorsTheme.primary.main,
-          minHeight: "3rem",
+          minHeight: "4rem",
           display: "flex",
           alignItems: "center",
         }}
       >
-        {pagesLayout[router.route].renderSidebar ? (
+        {pagesLayout[router.route].renderSidebar && isMobile && (
           <Stack
             sp={{
               height: "100%",
-              padding: "0 15px",
+              paddingLeft: "15px",
               display: "flex",
               alignItems: "center",
             }}
@@ -51,30 +56,39 @@ export default function Header() {
               <MdMenu />
             </Box>
           </Stack>
-        ) : (
-          <Box sp={{ minWidth: "55px" }} />
         )}
 
         <Container
           maxWidth={"desktop"}
           sp={{
-            padding: 0,
+            padding: "0 20px",
             alignItems: "center",
             height: "100%",
             display: "flex",
             flex: 1,
+            justifyContent: "space-between",
           }}
         >
-          <Box
-            sp={{
-              position: "relative",
-              width: "6.25rem",
-              height: "2.2rem",
-              transform: "translateY(-0.4rem)",
-            }}
-          >
-            <Image priority src={logoEscrita} fill alt="logo da marca" />
-          </Box>
+          <LinkNext href="/home">
+            <Box
+              sp={{
+                position: "relative",
+                width: "6.25rem",
+                height: "2.2rem",
+                transform: "translateY(-0.4rem)",
+              }}
+            >
+              <Image priority src={logoEscrita} fill alt="logo da marca" />
+            </Box>
+          </LinkNext>
+
+          <LinkNext href="/create_product">
+            <ButtonContained
+              sp={{ height: "2rem", borderRadius: "20px", fontWeight: 400 }}
+            >
+              Avalie!
+            </ButtonContained>
+          </LinkNext>
         </Container>
       </Box>
     </>

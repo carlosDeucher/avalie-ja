@@ -52,6 +52,7 @@ export default function Input(props) {
             alignItems: "center",
             padding: "10px 5px",
             borderRadius: "0.375em",
+            backgroundColor: colors.white.main,
             "&:focus-within": {
               boxShadow: error
                 ? `0 0 0 1.5px ${colors.error.main}`

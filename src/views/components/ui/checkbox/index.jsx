@@ -89,7 +89,7 @@ export default function CheckBox(props) {
         ></Box>
       </Box>
       {labelText && (
-        <label for="checkbox">
+        <label css={{ cursor: "pointer" }} htmlFor="checkbox">
           <span
             css={{
               fontSize: fontSizesTheme.medium,
