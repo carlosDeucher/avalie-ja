@@ -23,8 +23,8 @@ export default function Logo() {
       <Image
         priority
         src={logoSmall}
-        width={isSidebarOpen ? 70 : 50}
-        height={isSidebarOpen ? 70 : 50}
+        width={50}
+        height={50}
         style={{ transition: "all 200ms" }}
         alt="logo da marca"
       />

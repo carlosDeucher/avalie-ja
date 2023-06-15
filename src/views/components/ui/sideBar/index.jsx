@@ -23,9 +23,9 @@ export default function SideBar() {
 
   let widthSidebar;
   if (isMobileOrFirstRender) {
-    widthSidebar = isSidebarOpen ? "250px" : 0;
+    widthSidebar = isSidebarOpen ? "215px" : 0;
   } else {
-    widthSidebar = isSidebarOpen ? "250px" : "60px";
+    widthSidebar = isSidebarOpen ? "215px" : "60px";
   }
 
   useEffect(() => setIsSidebarOpen(false), [isMobileOrFirstRender]);
