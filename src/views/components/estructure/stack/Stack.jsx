@@ -16,20 +16,22 @@ export default function Stack(props) {
     rowGap,
     width,
     height,
+    wrap,
   } = props;
   const stylesProps = useInlineStyle(sp);
 
   const commonProps = { ...props };
 
-    delete commonProps.sp;
-    delete commonProps.component;
-    delete commonProps.justifyContent;
-    delete commonProps.direction;
-    delete commonProps.alignItems;
-    delete commonProps.columnGap;
-    delete commonProps.rowGap;
-    delete commonProps.width;
-    delete commonProps.height;
+  delete commonProps.sp;
+  delete commonProps.component;
+  delete commonProps.justifyContent;
+  delete commonProps.direction;
+  delete commonProps.alignItems;
+  delete commonProps.columnGap;
+  delete commonProps.rowGap;
+  delete commonProps.width;
+  delete commonProps.height;
+  delete commonProps.wrap;
 
   return jsx(component || "div", {
     css: {
@@ -41,6 +43,7 @@ export default function Stack(props) {
       flexDirection: direction,
       width,
       height,
+      flexWrap: wrap,
       ...stylesProps,
     },
     ...commonProps,
