@@ -17,6 +17,8 @@ export default function Input(props) {
     error,
     labelText,
     multiline,
+    endIcon,
+    noRenderErrors,
   } = props;
   const breakpoint = useBreakpoint();
   const rows = convertResponsiveValues(props.rows, breakpoint);
@@ -27,6 +29,8 @@ export default function Input(props) {
   delete commonProps.labelText;
   delete commonProps.multiline;
   delete commonProps.rows;
+  delete commonProps.endIcon;
+  delete commonProps.noRenderErrors;
 
   const { fontSizes, colors } = useContext(ThemeContext);
   const style = useInlineStyle(sp);
@@ -53,6 +57,8 @@ export default function Input(props) {
             padding: "10px 5px",
             borderRadius: "0.375em",
             backgroundColor: colors.white.main,
+            position: "relative",
+            cursor: "text",
             "&:focus-within": {
               boxShadow: error
                 ? `0 0 0 1.5px ${colors.error.main}`
@@ -77,9 +83,19 @@ export default function Input(props) {
             },
             rows,
           })}
+          <Box
+            sp={{
+              position: "absolute",
+              right: 0,
+              transform: "translateX(-10px)",
+            }}
+          >
+            {endIcon}
+          </Box>
         </div>
       </label>
-      <InputError showError={!!error}>{error}</InputError>
+      {!noRenderErrors && <InputError showError={!!error}>{error}</InputError>}
+      
     </Box>
   );
 }

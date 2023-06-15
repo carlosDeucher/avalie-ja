@@ -4,7 +4,7 @@ import { RiStarFill } from "react-icons/Ri";
 import Box from "../../estructure/box/Box";
 import Stack from "../../estructure/stack/Stack";
 
-export default function Rating({ count }) {
+export default function Rating({ count, readOnly }) {
   const { colors: colorsTheme } = useContext(ThemeContext);
   const [selectedStarIndex, setSelectedStarIndex] = useState();
 
@@ -12,7 +12,7 @@ export default function Rating({ count }) {
     if (starIndex <= selectedStarIndex) return "#ffc926";
     else return colorsTheme.grey[4];
   };
-  
+
   const setSiblingsColorStr = `&:has(~ #star:hover)`;
 
   return (
@@ -22,11 +22,11 @@ export default function Rating({ count }) {
           <Box
             id={`star`}
             sp={{
-              "&:hover": {
+              "&:hover": !readOnly && {
                 transform: "scale(1.15)",
                 color: "#ffc926",
               },
-              [setSiblingsColorStr]: {
+              [setSiblingsColorStr]:!readOnly && {
                 color: "#ffc926",
               },
               color: getColor(index),
@@ -37,6 +37,7 @@ export default function Rating({ count }) {
                 cursor: "pointer",
               }}
               onClick={() => {
+                if (readOnly) return;
                 if (index === selectedStarIndex)
                   return setSelectedStarIndex(index - 1);
                 else setSelectedStarIndex(index);
