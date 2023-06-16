@@ -12,7 +12,7 @@ export default function LinkNext(props) {
   delete commonProps.sp;
   delete commonProps.children;
   return (
-    <Link css={style} {...commonProps}>
+    <Link css={{ color: "inherit", ...style }} {...commonProps}>
       {children}
     </Link>
   );
