@@ -33,7 +33,7 @@ export default function Descriptions() {
           >
             e-mail
           </Text>{" "}
-          do Avalie&nbsp;Ja
+          do Avalie&nbsp;Já
         </Text>
       )}
       {step === "login" && (
@@ -46,7 +46,7 @@ export default function Descriptions() {
           >
             {userPublicInfos?.username}!
           </Text>{" "}
-          Digite sua senha do Avalie&nbsp;Ja
+          Digite sua senha do Avalie&nbsp;Já
         </Text>
       )}
 
