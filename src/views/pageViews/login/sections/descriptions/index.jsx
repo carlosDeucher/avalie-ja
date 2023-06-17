@@ -5,16 +5,14 @@ import { FiGithub } from "react-icons/Fi";
 import Box from "@/views/components/estructure/box/Box";
 import Stack from "@/views/components/estructure/stack/Stack";
 import { ThemeContext } from "@/contexts/ThemeProvider";
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import Text from "@/views/components/estructure/text/Text";
-import { useRouter } from "next/router";
 import { ViewLoginContext } from "../..";
 
 export default function Descriptions() {
   const { fontSizes: fontSizesTheme, colors: colorsTheme } =
     useContext(ThemeContext);
-  const { step } = useContext(ViewLoginContext);
-  const { query } = useRouter();
+  const { step, userPublicInfos } = useContext(ViewLoginContext);
 
   return (
     <Box
@@ -28,7 +26,11 @@ export default function Descriptions() {
       {step === "confirmEmail" && (
         <Text fontSize={"xlarge"} fontWeight={600}>
           Digite o seu{" "}
-          <Text fontWeight={600} component={"span"} sp={{ whiteSpace: "nowrap" }}>
+          <Text
+            fontWeight={600}
+            component={"span"}
+            sp={{ whiteSpace: "nowrap" }}
+          >
             e-mail
           </Text>{" "}
           do Avalie&nbsp;Ja
@@ -37,8 +39,12 @@ export default function Descriptions() {
       {step === "login" && (
         <Text fontSize={"xlarge"} fontWeight={600}>
           Olá,{" "}
-          <Text component={"span"} sp={{ whiteSpace: "nowrap" }}>
-            {decodeURI(query.username)}!
+          <Text
+            component={"span"}
+            fontWeight={"inherit"}
+            sp={{ whiteSpace: "nowrap" }}
+          >
+            {userPublicInfos?.username}!
           </Text>{" "}
           Digite sua senha do Avalie&nbsp;Ja
         </Text>

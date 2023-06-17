@@ -4,22 +4,20 @@ import Box from "@/views/components/estructure/box/Box";
 import Stack from "@/views/components/estructure/stack/Stack";
 import ButtonContained from "@/views/components/ui/buttons/ButtonContained";
 import { ApiLoginContext } from "@/pages/login";
-import { useContext, useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useContext, useState } from "react";
 import ButtonText from "@/views/components/ui/buttons/ButtonText";
 import LinkNext from "@/views/components/estructure/link/LinkNext";
 
 export default function LoginForm() {
-  const { setStep } = useContext(ViewLoginContext);
+  const { setStep, userPublicInfos } = useContext(ViewLoginContext);
   const { loginUser } = useContext(ApiLoginContext);
-  const { push, query, isReady } = useRouter();
   const [isInputEmpty, setIsInputEmpty] = useState(true);
   const [isInvalidPassword, setIsInvalidPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const password = e.target[0].value;
-    const data = await loginUser({ password, idUser: query.userId });
+    const data = await loginUser({ password, idUser: userPublicInfos.id });
     if (data) {
       if (data.status === "success") {
         console.log("logado");
@@ -27,13 +25,6 @@ export default function LoginForm() {
         setIsInvalidPassword(true);
     }
   };
-
-  useEffect(() => {
-    if (isReady && !query.userId) {
-      setStep("confirmEmail");
-      push("/login");
-    }
-  }, []);
 
   return (
     <Box component="form" onSubmit={handleSubmit} sp={{ position: "relative" }}>

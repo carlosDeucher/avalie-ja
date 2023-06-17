@@ -15,6 +15,8 @@ export default function Login() {
       const { data } = await axios.post("/api/user/mutation/get_user", {
         email,
       });
+      const userPublicInfoSting = JSON.stringify(data.data);
+      localStorage.setItem("user_public_infos", userPublicInfoSting);
       setIsLoading(false);
       return data;
     } catch (e) {

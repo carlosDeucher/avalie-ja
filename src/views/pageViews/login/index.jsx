@@ -1,22 +1,27 @@
 import Stack from "@/views/components/estructure/stack/Stack";
 import ContainerLogin from "@/views/components/estructure/container/ContainerLogin";
 import { createContext, useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import Form from "./sections/form";
 import Descriptions from "./sections/descriptions";
 
 export const ViewLoginContext = createContext();
 export default function LoginView() {
   const [step, setStep] = useState("confirmEmail");
-  const router = useRouter();
+  const [userPublicInfos, setUserPublicInfos] = useState();
 
   useEffect(() => {
-    if (router.query.step === "confirmEmail") setStep("confirmEmail");
-    if (router.query.step === "login") setStep("login");
-  }, [router.query]);
+    const userPublicInfo = JSON.parse(
+      localStorage.getItem("user_public_infos")
+    );
+    setUserPublicInfos(userPublicInfo);
+    if (userPublicInfo) setStep("login");
+    else setStep("confirmEmail");
+  }, []);
 
   return (
-    <ViewLoginContext.Provider value={{ step, setStep }}>
+    <ViewLoginContext.Provider
+      value={{ step, setStep, userPublicInfos, setUserPublicInfos }}
+    >
       <ContainerLogin maxWidth="laptop">
         <Stack
           justifyContent={"center"}

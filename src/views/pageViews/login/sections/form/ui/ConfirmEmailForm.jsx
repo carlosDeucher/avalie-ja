@@ -6,13 +6,12 @@ import Stack from "@/views/components/estructure/stack/Stack";
 import ButtonContained from "@/views/components/ui/buttons/ButtonContained";
 import { ApiLoginContext } from "@/pages/login";
 import { useContext, useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import ButtonText from "@/views/components/ui/buttons/ButtonText";
 import LinkNext from "@/views/components/estructure/link/LinkNext";
 
 export default function ConfirmEmailForm() {
   const { confirmUserEmail } = useContext(ApiLoginContext);
-  const { push } = useRouter();
+  const { setUserPublicInfos, setStep } = useContext(ViewLoginContext);
   const [isInputEmpty, setIsInputEmpty] = useState(true);
   const [isUserNotFound, setIsUserNotfound] = useState(false);
 
@@ -21,11 +20,8 @@ export default function ConfirmEmailForm() {
     const email = e.target[0].value;
     const data = await confirmUserEmail(email);
     if (data?.status === "success") {
-      push(
-        `/login?step=login&username=${encodeURI(data.data.username)}&userId=${
-          data.data.id
-        }`
-      );
+      setStep("login")
+      setUserPublicInfos({ username: data.data.username, id: data.data.id });
     } else if (data?.type === "USER_NOT_FOUND") setIsUserNotfound(true);
   };
 
