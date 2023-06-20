@@ -11,9 +11,10 @@ import { useForm } from "react-hook-form";
 export default function ModalEditarCampo({
   isOpen,
   onClose,
-  postFunction,
+  mutateFn,
   name,
   label,
+  value,
 }) {
   const labelRef = useRef("");
   if (label) labelRef.current = label; //mantem o label enquanto o componente se desmonta
@@ -24,9 +25,9 @@ export default function ModalEditarCampo({
     reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = async (form) => {
-    const success = await postFunction(form);
-    if (success) onClose();
+  const onSubmit = (form) => {
+    mutateFn(form);
+    onClose();
   };
 
   useEffect(() => {
@@ -48,6 +49,7 @@ export default function ModalEditarCampo({
         <Input
           labelText={labelRef.current}
           register={name && register(name, { required: true })}
+          defaultValue={value}
           error={errors[name] && "Campo requerido"}
           sp={{
             marginTop: "30px",

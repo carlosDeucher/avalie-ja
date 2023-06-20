@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   try {
     const user = await Users.findByPk(req.query.id);
     res.json({
-      response: user,
+      data: user,
       status:"success"
     });
   } catch {

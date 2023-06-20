@@ -16,7 +16,7 @@ import ExpandSidebar from "./ui/expandSidebar";
 
 export default function SideBar() {
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SideBarContext);
-  const { user } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
   const isMobile = useBreakpoint("mobile");
   const isMobileOrFirstRender = isMobile || isMobile === undefined;
   const [isOpenPopupLogout, setIsOpenPopupLogout] = useState(false);
@@ -87,7 +87,7 @@ export default function SideBar() {
                 />
                 <NavItem
                   route="/user/[idUser]"
-                  href={"/user/" + user?.id}
+                  href={"/user/" + currentUser?.id}
                   label={"Meu perfil"}
                   Icon={() => <AiOutlineUser />}
                 />

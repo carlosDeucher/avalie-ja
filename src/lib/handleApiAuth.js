@@ -24,7 +24,7 @@ export default function handleApiAuth() {
 
         const userLogged = await Users.findOne({
           where: {
-            idUser,
+            id: idUser,
             password,
           },
         });
@@ -33,7 +33,7 @@ export default function handleApiAuth() {
         } else {
           req.session.destroy();
           res
-            .status(400)
+            .status(200)
             .json({ status: "error", type: "INVALID_CREDENCIALS" });
         }
       }

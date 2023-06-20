@@ -4,15 +4,19 @@ import Container from "@/views/components/estructure/container/Container";
 import Divider from "@/views/components/estructure/divider/Divider";
 import Text from "@/views/components/estructure/text/Text";
 import ShowdataMinimalist from "@/views/components/ui/showData/ShowdataMinimalist";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ModalEditarCampo from "./windows/ModalEditarCampo";
 import ModalEditarSenha from "./windows/ModalEditarSenha";
+import { UserContext } from "@/contexts/UserContext";
+import { ApiUserContext } from "@/pages/user/[idUser]";
 
 export default function UserView() {
+  const { updateUser } = useContext(ApiUserContext);
   const [modalEditarCampoConfig, setModalEditarCampoConfig] = useState({
     open: false,
   });
   const [isOpenModalAlterarSenha, setIsOpenModalAlterarSenha] = useState(false);
+  const { currentUser } = useContext(UserContext);
   return (
     <>
       <ModalEditarCampo
@@ -20,6 +24,8 @@ export default function UserView() {
         isOpen={modalEditarCampoConfig.open}
         label={modalEditarCampoConfig.label}
         name={modalEditarCampoConfig.name}
+        value={modalEditarCampoConfig.value}
+        mutateFn={updateUser}
       />
       <ModalEditarSenha
         isOpen={isOpenModalAlterarSenha}
@@ -41,12 +47,13 @@ export default function UserView() {
                   open: true,
                   label: "Informe o novo nome de usuário",
                   name: "username",
+                  value: currentUser?.username,
                 });
               }}
             >
               <ShowdataMinimalist
                 label="Usuário"
-                value={"carlos henrique deucher"}
+                value={currentUser?.username}
               />
             </Box>
             <Divider />
@@ -57,13 +64,11 @@ export default function UserView() {
                   open: true,
                   label: "Informe o novo e-mail",
                   name: "email",
+                  value: currentUser?.email,
                 });
               }}
             >
-              <ShowdataMinimalist
-                label="E-mail"
-                value={"carloshenriquedeucher@gmail.com"}
-              />
+              <ShowdataMinimalist label="E-mail" value={currentUser?.email} />
             </Box>
             <Divider />
             <Box
@@ -72,10 +77,7 @@ export default function UserView() {
                 setIsOpenModalAlterarSenha(true);
               }}
             >
-              <ShowdataMinimalist
-                label="Senha"
-                value={"carlos henrique deucher"}
-              />
+              <ShowdataMinimalist label="Senha" value={"*********"} />
             </Box>
           </Card>
         </Box>
