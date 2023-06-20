@@ -49,9 +49,6 @@ export default function User() {
         <Snackbar isOpen={errorMessage} onClose={() => setErrorMessage(null)}>
           {errorMessage}
         </Snackbar>
-        <ButtonContained onClick={() => updatePassword()}>
-          Teste update
-        </ButtonContained>
         <UserView />
       </ApiUserContext.Provider>
     </>
