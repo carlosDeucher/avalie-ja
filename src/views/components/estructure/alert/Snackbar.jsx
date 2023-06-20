@@ -63,6 +63,7 @@ export default function Snackbar({
         <Box
           sp={{
             position: "fixed",
+            zIndex: 9999,
             bottom: 0,
             left: 0,
             padding: "25px 30px",
